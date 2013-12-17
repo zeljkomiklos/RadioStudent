@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1C828418609E0B002E07F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C828318609E0B002E07F0 /* Reachability.m */; };
+		1C1C828618609E7F002E07F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1C828518609E7F002E07F0 /* Main.storyboard */; };
+		1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C828818609EE1002E07F0 /* MainViewController.m */; };
+		1C1C828E1860A153002E07F0 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C828D1860A153002E07F0 /* AudioPlayer.m */; };
 		1C28C9C8186093CB00CB726C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9C7186093CB00CB726C /* Foundation.framework */; };
 		1C28C9CA186093CB00CB726C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9C9186093CB00CB726C /* CoreGraphics.framework */; };
 		1C28C9CC186093CB00CB726C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9CB186093CB00CB726C /* UIKit.framework */; };
 		1C28C9D2186093CB00CB726C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9D0186093CB00CB726C /* InfoPlist.strings */; };
 		1C28C9D4186093CB00CB726C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9D3186093CB00CB726C /* main.m */; };
 		1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9D7186093CB00CB726C /* AppDelegate.m */; };
-		1C28C9DB186093CB00CB726C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9D9186093CB00CB726C /* Main.storyboard */; };
-		1C28C9DE186093CB00CB726C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9DD186093CB00CB726C /* ViewController.m */; };
 		1C28C9E0186093CB00CB726C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9DF186093CB00CB726C /* Images.xcassets */; };
 		1C28C9E7186093CB00CB726C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9E6186093CB00CB726C /* XCTest.framework */; };
 		1C28C9E8186093CB00CB726C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9C7186093CB00CB726C /* Foundation.framework */; };
@@ -34,6 +36,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C1C828218609E0B002E07F0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		1C1C828318609E0B002E07F0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		1C1C828518609E7F002E07F0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1C1C828718609EE1002E07F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1C1C828818609EE1002E07F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1C1C828A1860A07F002E07F0 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		1C1C828C1860A153002E07F0 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		1C1C828D1860A153002E07F0 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
 		1C28C9C4186093CB00CB726C /* RadioStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C28C9C7186093CB00CB726C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C28C9C9186093CB00CB726C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -44,9 +54,6 @@
 		1C28C9D5186093CB00CB726C /* RadioStudent-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RadioStudent-Prefix.pch"; sourceTree = "<group>"; };
 		1C28C9D6186093CB00CB726C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1C28C9D7186093CB00CB726C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1C28C9DA186093CB00CB726C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1C28C9DC186093CB00CB726C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1C28C9DD186093CB00CB726C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1C28C9DF186093CB00CB726C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1C28C9E5186093CB00CB726C /* RadioStudentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioStudentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C28C9E6186093CB00CB726C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,11 +86,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C1C828118609DCB002E07F0 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				1C1C828218609E0B002E07F0 /* Reachability.h */,
+				1C1C828318609E0B002E07F0 /* Reachability.m */,
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
+		1C1C828B1860A131002E07F0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1C1C828C1860A153002E07F0 /* AudioPlayer.h */,
+				1C1C828D1860A153002E07F0 /* AudioPlayer.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
+				1C1C828B1860A131002E07F0 /* Common */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
-				1C28C9EC186093CB00CB726C /* RadioStudentTests */,
+				1C1C828118609DCB002E07F0 /* Vendors */,
 				1C28C9C6186093CB00CB726C /* Frameworks */,
 				1C28C9C5186093CB00CB726C /* Products */,
 			);
@@ -112,13 +138,15 @@
 		1C28C9CD186093CB00CB726C /* RadioStudent */ = {
 			isa = PBXGroup;
 			children = (
+				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1C28C9D6186093CB00CB726C /* AppDelegate.h */,
 				1C28C9D7186093CB00CB726C /* AppDelegate.m */,
-				1C28C9D9186093CB00CB726C /* Main.storyboard */,
-				1C28C9DC186093CB00CB726C /* ViewController.h */,
-				1C28C9DD186093CB00CB726C /* ViewController.m */,
+				1C1C828718609EE1002E07F0 /* MainViewController.h */,
+				1C1C828818609EE1002E07F0 /* MainViewController.m */,
+				1C1C828518609E7F002E07F0 /* Main.storyboard */,
 				1C28C9DF186093CB00CB726C /* Images.xcassets */,
 				1C28C9CE186093CB00CB726C /* Supporting Files */,
+				1C28C9EC186093CB00CB726C /* RadioStudentTests */,
 			);
 			path = RadioStudent;
 			sourceTree = "<group>";
@@ -141,7 +169,7 @@
 				1C28C9ED186093CB00CB726C /* Supporting Files */,
 			);
 			path = RadioStudentTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		1C28C9ED186093CB00CB726C /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -230,7 +258,7 @@
 			files = (
 				1C28C9E0186093CB00CB726C /* Images.xcassets in Resources */,
 				1C28C9D2186093CB00CB726C /* InfoPlist.strings in Resources */,
-				1C28C9DB186093CB00CB726C /* Main.storyboard in Resources */,
+				1C1C828618609E7F002E07F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C28C9DE186093CB00CB726C /* ViewController.m in Sources */,
 				1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */,
+				1C1C828418609E0B002E07F0 /* Reachability.m in Sources */,
+				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
+				1C1C828E1860A153002E07F0 /* AudioPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +310,6 @@
 				1C28C9D1186093CB00CB726C /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1C28C9D9186093CB00CB726C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1C28C9DA186093CB00CB726C /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		1C28C9EF186093CB00CB726C /* InfoPlist.strings */ = {
@@ -460,6 +482,7 @@
 				1C28C9F8186093CB00CB726C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C28C9F9186093CB00CB726C /* Build configuration list for PBXNativeTarget "RadioStudentTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +491,7 @@
 				1C28C9FB186093CB00CB726C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
