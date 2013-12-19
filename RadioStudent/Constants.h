@@ -9,7 +9,7 @@
 #ifndef RadioStudent_Constants_h
 #define RadioStudent_Constants_h
 
-#define RS_LIVE_STREAM_URL @"kruljo.radiostudent.si:8000/ehiq"
+#define RS_LIVE_STREAM_URL @"http://kruljo.radiostudent.si:8000/ehiq"
 
 
 #endif

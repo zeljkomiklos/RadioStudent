@@ -24,6 +24,16 @@
 		1C28C9E9186093CB00CB726C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9CB186093CB00CB726C /* UIKit.framework */; };
 		1C28C9F1186093CB00CB726C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9EF186093CB00CB726C /* InfoPlist.strings */; };
 		1C28C9F3186093CB00CB726C /* RadioStudentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9F2186093CB00CB726C /* RadioStudentTests.m */; };
+		1C49D3A11863792E00516592 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1C49D3A01863792E00516592 /* LICENSE.txt */; };
+		1C76E5B218636EFE00F3401B /* FSAudioStream.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C76E5B118636EFE00F3401B /* FSAudioStream.mm */; };
+		1C76E5BD186371AF00F3401B /* audio_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C76E5B5186371AF00F3401B /* audio_queue.cpp */; };
+		1C76E5BE186371AF00F3401B /* audio_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C76E5B7186371AF00F3401B /* audio_stream.cpp */; };
+		1C76E5BF186371AF00F3401B /* http_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C76E5B9186371AF00F3401B /* http_stream.cpp */; };
+		1C76E5C0186371AF00F3401B /* id3_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C76E5BB186371AF00F3401B /* id3_parser.cpp */; };
+		1C76E5C21863723700F3401B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C76E5C11863723700F3401B /* AudioToolbox.framework */; };
+		1C76E5C41863725600F3401B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C76E5C31863725600F3401B /* AVFoundation.framework */; };
+		1CC36FF81861BF7E00B7C2D5 /* AudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC36FF71861BF7E00B7C2D5 /* AudioFile.m */; };
+		1CC36FFB1861C01E00B7C2D5 /* AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC36FFA1861C01E00B7C2D5 /* AQPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +72,23 @@
 		1C28C9EE186093CB00CB726C /* RadioStudentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RadioStudentTests-Info.plist"; sourceTree = "<group>"; };
 		1C28C9F0186093CB00CB726C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
+		1C49D3A01863792E00516592 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = ../../../Code/FreeStreamer/LICENSE.txt; sourceTree = "<group>"; };
+		1C76E5B018636EFE00F3401B /* FSAudioStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAudioStream.h; sourceTree = "<group>"; };
+		1C76E5B118636EFE00F3401B /* FSAudioStream.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FSAudioStream.mm; sourceTree = "<group>"; };
+		1C76E5B5186371AF00F3401B /* audio_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_queue.cpp; sourceTree = "<group>"; };
+		1C76E5B6186371AF00F3401B /* audio_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_queue.h; sourceTree = "<group>"; };
+		1C76E5B7186371AF00F3401B /* audio_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_stream.cpp; sourceTree = "<group>"; };
+		1C76E5B8186371AF00F3401B /* audio_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_stream.h; sourceTree = "<group>"; };
+		1C76E5B9186371AF00F3401B /* http_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_stream.cpp; sourceTree = "<group>"; };
+		1C76E5BA186371AF00F3401B /* http_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_stream.h; sourceTree = "<group>"; };
+		1C76E5BB186371AF00F3401B /* id3_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = id3_parser.cpp; sourceTree = "<group>"; };
+		1C76E5BC186371AF00F3401B /* id3_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = id3_parser.h; sourceTree = "<group>"; };
+		1C76E5C11863723700F3401B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1C76E5C31863725600F3401B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1CC36FF61861BF7E00B7C2D5 /* AudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFile.h; sourceTree = "<group>"; };
+		1CC36FF71861BF7E00B7C2D5 /* AudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFile.m; sourceTree = "<group>"; };
+		1CC36FF91861C01E00B7C2D5 /* AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPlayer.h; sourceTree = "<group>"; };
+		1CC36FFA1861C01E00B7C2D5 /* AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C76E5C41863725600F3401B /* AVFoundation.framework in Frameworks */,
+				1C76E5C21863723700F3401B /* AudioToolbox.framework in Frameworks */,
 				1C28C9CA186093CB00CB726C /* CoreGraphics.framework in Frameworks */,
 				1C28C9CC186093CB00CB726C /* UIKit.framework in Frameworks */,
 				1C28C9C8186093CB00CB726C /* Foundation.framework in Frameworks */,
@@ -91,6 +120,7 @@
 		1C1C828118609DCB002E07F0 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				1C76E5B41863717B00F3401B /* FreeStreamer */,
 				1C1C828218609E0B002E07F0 /* Reachability.h */,
 				1C1C828318609E0B002E07F0 /* Reachability.m */,
 			);
@@ -109,6 +139,7 @@
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
+				1C76E5B318636F3600F3401B /* Lab */,
 				1C1C828B1860A131002E07F0 /* Common */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
 				1C1C828118609DCB002E07F0 /* Vendors */,
@@ -130,6 +161,8 @@
 		1C28C9C6186093CB00CB726C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C76E5C31863725600F3401B /* AVFoundation.framework */,
+				1C76E5C11863723700F3401B /* AudioToolbox.framework */,
 				1C28C9C7186093CB00CB726C /* Foundation.framework */,
 				1C28C9C9186093CB00CB726C /* CoreGraphics.framework */,
 				1C28C9CB186093CB00CB726C /* UIKit.framework */,
@@ -181,6 +214,35 @@
 				1C28C9EF186093CB00CB726C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C76E5B318636F3600F3401B /* Lab */ = {
+			isa = PBXGroup;
+			children = (
+				1CC36FF61861BF7E00B7C2D5 /* AudioFile.h */,
+				1CC36FF71861BF7E00B7C2D5 /* AudioFile.m */,
+				1CC36FF91861C01E00B7C2D5 /* AQPlayer.h */,
+				1CC36FFA1861C01E00B7C2D5 /* AQPlayer.m */,
+			);
+			name = Lab;
+			sourceTree = "<group>";
+		};
+		1C76E5B41863717B00F3401B /* FreeStreamer */ = {
+			isa = PBXGroup;
+			children = (
+				1C49D3A01863792E00516592 /* LICENSE.txt */,
+				1C76E5B018636EFE00F3401B /* FSAudioStream.h */,
+				1C76E5B118636EFE00F3401B /* FSAudioStream.mm */,
+				1C76E5B5186371AF00F3401B /* audio_queue.cpp */,
+				1C76E5B6186371AF00F3401B /* audio_queue.h */,
+				1C76E5B7186371AF00F3401B /* audio_stream.cpp */,
+				1C76E5B8186371AF00F3401B /* audio_stream.h */,
+				1C76E5B9186371AF00F3401B /* http_stream.cpp */,
+				1C76E5BA186371AF00F3401B /* http_stream.h */,
+				1C76E5BB186371AF00F3401B /* id3_parser.cpp */,
+				1C76E5BC186371AF00F3401B /* id3_parser.h */,
+			);
+			name = FreeStreamer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +324,7 @@
 				1C28C9E0186093CB00CB726C /* Images.xcassets in Resources */,
 				1C28C9D2186093CB00CB726C /* InfoPlist.strings in Resources */,
 				1C1C82901860A827002E07F0 /* README.md in Resources */,
+				1C49D3A11863792E00516592 /* LICENSE.txt in Resources */,
 				1C1C828618609E7F002E07F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,11 +344,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC36FF81861BF7E00B7C2D5 /* AudioFile.m in Sources */,
 				1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */,
+				1C76E5BE186371AF00F3401B /* audio_stream.cpp in Sources */,
 				1C1C828418609E0B002E07F0 /* Reachability.m in Sources */,
+				1CC36FFB1861C01E00B7C2D5 /* AQPlayer.m in Sources */,
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
+				1C76E5BD186371AF00F3401B /* audio_queue.cpp in Sources */,
+				1C76E5C0186371AF00F3401B /* id3_parser.cpp in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
 				1C1C828E1860A153002E07F0 /* AudioPlayer.m in Sources */,
+				1C76E5B218636EFE00F3401B /* FSAudioStream.mm in Sources */,
+				1C76E5BF186371AF00F3401B /* http_stream.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +477,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RadioStudent/RadioStudent-Prefix.pch";
 				INFOPLIST_FILE = "RadioStudent/RadioStudent-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -420,6 +491,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RadioStudent/RadioStudent-Prefix.pch";
 				INFOPLIST_FILE = "RadioStudent/RadioStudent-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -442,6 +514,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "RadioStudentTests/RadioStudentTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -461,6 +534,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RadioStudent/RadioStudent-Prefix.pch";
 				INFOPLIST_FILE = "RadioStudentTests/RadioStudentTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

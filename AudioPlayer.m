@@ -7,9 +7,14 @@
 //
 
 #import "AudioPlayer.h"
+#import "FSAudioStream.h"
+#import "Constants.h"
 
 @interface AudioPlayer ()
+{
+}
 
+@property (strong, nonatomic) FSAudioStream *audioStream;
 @property (strong, nonatomic) NSURL *audioUrl;
 
 @end
@@ -25,20 +30,24 @@
 - (id)initWithUrl:(NSString *)url {
     self.audioUrl = [NSURL URLWithString:url];
     
+    self.audioStream = [[FSAudioStream alloc] initWithUrl:[[NSURL alloc] initWithString:RS_LIVE_STREAM_URL]];
+    
     return self;
 }
 
 
 #pragma mark - Control
 
-- (BOOL)playing {
-    return FALSE;
+- (BOOL)isPlaying {
+    return self.audioStream.isPlaying;
 }
 
 - (void)startPlaying {
+    [self.audioStream play];
 }
 
 - (void)stopPlaying {
+    [self.audioStream stop];
     
 }
 

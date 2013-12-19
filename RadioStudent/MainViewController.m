@@ -47,7 +47,7 @@
 #pragma mark - Bindings
 
 - (IBAction)playStopAction:(id)sender {
-    if(_audioPlayer.playing) {
+    if(_audioPlayer.isPlaying) {
         [_audioPlayer stopPlaying];
     } else {
         [_audioPlayer startPlaying];

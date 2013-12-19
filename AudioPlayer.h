@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) id <AudioPlayerDelegate> delegate;
 
-@property (readonly, nonatomic) BOOL playing;
+@property (readonly, nonatomic) BOOL isPlaying;
 
 #
 + (AudioPlayer *)newInstance:(NSString *)url;

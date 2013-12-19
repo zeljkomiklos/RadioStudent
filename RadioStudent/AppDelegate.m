@@ -12,6 +12,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(&rootExceptionHandler);
+
     // Override point for customization after application launch.
     return YES;
 }
@@ -41,6 +43,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+static void rootExceptionHandler(NSException *exception) {
+    NSLog(@"Root exception: %@", exception);
+    NSLog(@"... stack trace: %@", [exception callStackReturnAddresses]);
+    NSLog(@"... symbols: %@",  [exception callStackSymbols]);
 }
 
 @end
