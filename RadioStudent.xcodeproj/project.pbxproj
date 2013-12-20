@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C1C828418609E0B002E07F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C828318609E0B002E07F0 /* Reachability.m */; };
 		1C1C828618609E7F002E07F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1C828518609E7F002E07F0 /* Main.storyboard */; };
 		1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1C828818609EE1002E07F0 /* MainViewController.m */; };
 		1C1C82901860A827002E07F0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1C1C828F1860A827002E07F0 /* README.md */; };
-		1C23F92B18646C9E007BB0E1 /* RSPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C23F92A18646C9E007BB0E1 /* RSPlayer.m */; };
 		1C28C9C8186093CB00CB726C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9C7186093CB00CB726C /* Foundation.framework */; };
 		1C28C9CA186093CB00CB726C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9C9186093CB00CB726C /* CoreGraphics.framework */; };
 		1C28C9CC186093CB00CB726C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9CB186093CB00CB726C /* UIKit.framework */; };
@@ -24,10 +22,12 @@
 		1C28C9E9186093CB00CB726C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9CB186093CB00CB726C /* UIKit.framework */; };
 		1C28C9F1186093CB00CB726C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9EF186093CB00CB726C /* InfoPlist.strings */; };
 		1C28C9F3186093CB00CB726C /* RadioStudentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9F2186093CB00CB726C /* RadioStudentTests.m */; };
-		1C2E2EA01864C0D50067C36A /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E2E9F1864C0D50067C36A /* AudioStreamer.m */; };
-		1C2E2EA31864C36C0067C36A /* RSStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2E2EA21864C36C0067C36A /* RSStreamer.m */; };
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
+		1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */; };
+		1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F21864ED0000FD2CB9 /* Reachability.m */; };
+		1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F51864ED1300FD2CB9 /* RSStreamer.m */; };
+		1CE387FA1864ED1300FD2CB9 /* RSPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F61864ED1300FD2CB9 /* RSPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,15 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C1C828218609E0B002E07F0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		1C1C828318609E0B002E07F0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		1C1C828518609E7F002E07F0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1C1C828718609EE1002E07F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1C1C828818609EE1002E07F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		1C1C828A1860A07F002E07F0 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1C1C828F1860A827002E07F0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		1C23F92918646C9E007BB0E1 /* RSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlayer.h; sourceTree = "<group>"; };
-		1C23F92A18646C9E007BB0E1 /* RSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlayer.m; sourceTree = "<group>"; };
 		1C28C9C4186093CB00CB726C /* RadioStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C28C9C7186093CB00CB726C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C28C9C9186093CB00CB726C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,12 +62,16 @@
 		1C28C9EE186093CB00CB726C /* RadioStudentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RadioStudentTests-Info.plist"; sourceTree = "<group>"; };
 		1C28C9F0186093CB00CB726C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
-		1C2E2E9E1864C0D50067C36A /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = RadioStudent/AudioStreamer.h; sourceTree = "<group>"; };
-		1C2E2E9F1864C0D50067C36A /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = RadioStudent/AudioStreamer.m; sourceTree = "<group>"; };
-		1C2E2EA11864C36C0067C36A /* RSStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSStreamer.h; path = ../RSStreamer.h; sourceTree = "<group>"; };
-		1C2E2EA21864C36C0067C36A /* RSStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSStreamer.m; path = ../RSStreamer.m; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = Vendors/AudioStreamer.h; sourceTree = "<group>"; };
+		1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = Vendors/AudioStreamer.m; sourceTree = "<group>"; };
+		1CE387F11864ED0000FD2CB9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Vendors/Reachability.h; sourceTree = "<group>"; };
+		1CE387F21864ED0000FD2CB9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Vendors/Reachability.m; sourceTree = "<group>"; };
+		1CE387F51864ED1300FD2CB9 /* RSStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSStreamer.m; path = Common/RSStreamer.m; sourceTree = "<group>"; };
+		1CE387F61864ED1300FD2CB9 /* RSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSPlayer.m; path = Common/RSPlayer.m; sourceTree = "<group>"; };
+		1CE387F71864ED1300FD2CB9 /* RSStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSStreamer.h; path = Common/RSStreamer.h; sourceTree = "<group>"; };
+		1CE387F81864ED1300FD2CB9 /* RSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSPlayer.h; path = Common/RSPlayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +103,10 @@
 		1C1C828118609DCB002E07F0 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				1C2E2E9E1864C0D50067C36A /* AudioStreamer.h */,
-				1C2E2E9F1864C0D50067C36A /* AudioStreamer.m */,
-				1C1C828218609E0B002E07F0 /* Reachability.h */,
-				1C1C828318609E0B002E07F0 /* Reachability.m */,
+				1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */,
+				1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */,
+				1CE387F11864ED0000FD2CB9 /* Reachability.h */,
+				1CE387F21864ED0000FD2CB9 /* Reachability.m */,
 			);
 			name = Vendors;
 			sourceTree = "<group>";
@@ -114,6 +114,7 @@
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
+				1CE387EE1864ECE700FD2CB9 /* Common */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
 				1C1C828118609DCB002E07F0 /* Vendors */,
 				1C28C9C6186093CB00CB726C /* Frameworks */,
@@ -147,10 +148,6 @@
 		1C28C9CD186093CB00CB726C /* RadioStudent */ = {
 			isa = PBXGroup;
 			children = (
-				1C2E2EA11864C36C0067C36A /* RSStreamer.h */,
-				1C2E2EA21864C36C0067C36A /* RSStreamer.m */,
-				1C23F92A18646C9E007BB0E1 /* RSPlayer.m */,
-				1C23F92918646C9E007BB0E1 /* RSPlayer.h */,
 				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1C28C9D6186093CB00CB726C /* AppDelegate.h */,
 				1C28C9D7186093CB00CB726C /* AppDelegate.m */,
@@ -191,6 +188,17 @@
 				1C28C9EF186093CB00CB726C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CE387EE1864ECE700FD2CB9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1CE387F51864ED1300FD2CB9 /* RSStreamer.m */,
+				1CE387F61864ED1300FD2CB9 /* RSPlayer.m */,
+				1CE387F71864ED1300FD2CB9 /* RSStreamer.h */,
+				1CE387F81864ED1300FD2CB9 /* RSPlayer.h */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,12 +308,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */,
-				1C1C828418609E0B002E07F0 /* Reachability.m in Sources */,
-				1C2E2EA31864C36C0067C36A /* RSStreamer.m in Sources */,
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
-				1C23F92B18646C9E007BB0E1 /* RSPlayer.m in Sources */,
-				1C2E2EA01864C0D50067C36A /* AudioStreamer.m in Sources */,
+				1CE387FA1864ED1300FD2CB9 /* RSPlayer.m in Sources */,
+				1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */,
+				1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */,
+				1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
