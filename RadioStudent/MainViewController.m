@@ -8,12 +8,12 @@
 
 #import "MainViewController.h"
 #import "Constants.h"
-#import "AudioPlayer.h"
+#import "RSPlayer.h"
 
 
-@interface MainViewController () <AudioPlayerDelegate>
+@interface MainViewController ()
 
-@property (strong, nonatomic) AudioPlayer *audioPlayer;
+@property (strong, nonatomic) RSPlayer *player;
 
 @end
 
@@ -21,7 +21,7 @@
 @implementation MainViewController
 
 
-#pragma mark - Lifecycle methods
+#pragma mark - Lifecycle
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -31,11 +31,17 @@
     return self;
 }
 
+- (void)dealloc {
+    [_player tearDown];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.audioPlayer = [AudioPlayer newInstance:RS_LIVE_STREAM_URL];
+    self.player = [RSPlayer playerWithURL:[NSURL URLWithString:RS_LIVE_STREAM_URL]];
+    
+    [_player wakeUp];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,12 +53,21 @@
 #pragma mark - Bindings
 
 - (IBAction)playStopAction:(id)sender {
-    if(_audioPlayer.isPlaying) {
-        [_audioPlayer stopPlaying];
+    if(_player.isPlaying) {
+        [_player stop];
     } else {
-        [_audioPlayer startPlaying];
+        [_player start];
     }
 }
+
+
+#pragma mark - Remote Events
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)receivedEvent
+{
+    [_player remoteControlReceivedWithEvent:(UIEvent *)receivedEvent];
+}
+
 
 
 @end

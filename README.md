@@ -3,7 +3,21 @@ RadioStudent
 
 RŠ for iPhone iOS 7+.
 
-Dobrodošli vsi, ki bi hoteli prispevati urico, deset prostega časa za razvoj preprostega iPhone radia s kanalom priklopljenim na legendarnih 89.3Mhz.
 
-Zaenkrat je to prazen projekt, upam da se bo do konca leta nabralo že nekaj kode.
+## Project specification ##
 
+To do!
+
+
+
+## Current implementation ##
+
+Experimental: Stop/Play of stream http://kruljo.radiostudent.si:8000/ehiq
+
+
+
+## Vendor code ##
+
+a) https://github.com/alexcrichton/AudioStreamer
+
+b) https://github.com/tonymillion/Reachability
