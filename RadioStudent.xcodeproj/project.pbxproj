@@ -48,8 +48,8 @@
 		1C1C828818609EE1002E07F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		1C1C828A1860A07F002E07F0 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		1C1C828F1860A827002E07F0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		1C23F92918646C9E007BB0E1 /* RSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSPlayer.h; path = RadioStudent/RSPlayer.h; sourceTree = "<group>"; };
-		1C23F92A18646C9E007BB0E1 /* RSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSPlayer.m; path = RadioStudent/RSPlayer.m; sourceTree = "<group>"; };
+		1C23F92918646C9E007BB0E1 /* RSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPlayer.h; sourceTree = "<group>"; };
+		1C23F92A18646C9E007BB0E1 /* RSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPlayer.m; sourceTree = "<group>"; };
 		1C28C9C4186093CB00CB726C /* RadioStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C28C9C7186093CB00CB726C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C28C9C9186093CB00CB726C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,8 +68,8 @@
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
 		1C2E2E9E1864C0D50067C36A /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = RadioStudent/AudioStreamer.h; sourceTree = "<group>"; };
 		1C2E2E9F1864C0D50067C36A /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = RadioStudent/AudioStreamer.m; sourceTree = "<group>"; };
-		1C2E2EA11864C36C0067C36A /* RSStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStreamer.h; sourceTree = "<group>"; };
-		1C2E2EA21864C36C0067C36A /* RSStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSStreamer.m; sourceTree = "<group>"; };
+		1C2E2EA11864C36C0067C36A /* RSStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSStreamer.h; path = ../RSStreamer.h; sourceTree = "<group>"; };
+		1C2E2EA21864C36C0067C36A /* RSStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSStreamer.m; path = ../RSStreamer.m; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -111,21 +111,9 @@
 			name = Vendors;
 			sourceTree = "<group>";
 		};
-		1C23F92C18646D9A007BB0E1 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				1C23F92918646C9E007BB0E1 /* RSPlayer.h */,
-				1C23F92A18646C9E007BB0E1 /* RSPlayer.m */,
-				1C2E2EA11864C36C0067C36A /* RSStreamer.h */,
-				1C2E2EA21864C36C0067C36A /* RSStreamer.m */,
-			);
-			name = Player;
-			sourceTree = "<group>";
-		};
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
-				1C23F92C18646D9A007BB0E1 /* Player */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
 				1C1C828118609DCB002E07F0 /* Vendors */,
 				1C28C9C6186093CB00CB726C /* Frameworks */,
@@ -159,6 +147,10 @@
 		1C28C9CD186093CB00CB726C /* RadioStudent */ = {
 			isa = PBXGroup;
 			children = (
+				1C2E2EA11864C36C0067C36A /* RSStreamer.h */,
+				1C2E2EA21864C36C0067C36A /* RSStreamer.m */,
+				1C23F92A18646C9E007BB0E1 /* RSPlayer.m */,
+				1C23F92918646C9E007BB0E1 /* RSPlayer.h */,
 				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1C28C9D6186093CB00CB726C /* AppDelegate.h */,
 				1C28C9D7186093CB00CB726C /* AppDelegate.m */,
