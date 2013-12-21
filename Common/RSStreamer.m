@@ -9,14 +9,17 @@
 @import AVFoundation;
 
 #import "RSStreamer.h"
+#import "Version.h"
 
-#define kDefaultNumAQBufs 32
-#define kDefaultAQDefaultBufSize 4096
+#define RSStreamerTrace
+#define RSDefaultNumAQBufs 32
+#define RSDefaultAQDefaultBufSize 4096
 
 
 @interface RSStreamer ()
 
 @property (nonatomic) BOOL pausedByInterruption;
+@property (strong, nonatomic) Version *version;
 
 @end
 
@@ -29,10 +32,18 @@
     assert(url != nil);
     RSStreamer *stream = [[RSStreamer alloc] init];
     stream->url = url;
-    stream->bufferCnt = kDefaultNumAQBufs;
-    stream->bufferSize = kDefaultAQDefaultBufSize;
+    stream->bufferCnt = RSDefaultNumAQBufs;
+    stream->bufferSize = RSDefaultAQDefaultBufSize;
     stream->timeoutInterval = 15;
 	return stream;
+}
+
+- (id)init {
+    if((self = [super init]) == nil) return nil;
+    
+    self.version = [[Version alloc] initWithString:[[UIDevice currentDevice] systemVersion]];
+    
+    return self;
 }
 
 
@@ -96,25 +107,57 @@
 
 - (void)interruptionOcurred:(NSNotification *)notif {
     NSInteger option = [notif.userInfo[AVAudioSessionInterruptionOptionKey] integerValue];
-    switch (option) {
-        case AVAudioSessionInterruptionTypeEnded: // iOS 7.0.4 - bug :: should be AVAudioSessionInterruptionTypeBegan
-            NSLog(@"Case: interruption began!");
-            if ([self isPlaying]) {
-                [self pause];
-                
-                self.pausedByInterruption = YES;
-            }
-            break;
-        case AVAudioSessionInterruptionTypeBegan: // iOS 7.0.4 - bug :: should be AVAudioSessionInterruptionTypeEnded
-            NSLog(@"Case: interruption ended!");
-            if ([self isPaused] && _pausedByInterruption) {
-                [self play];
-                
-                self.pausedByInterruption = NO;
-            }
-            break;
-        default:
-            break;
+    if(_version.major == 7 && _version.minor == 0 && _version.micro <= 4) {
+        // iOS [7.0.0 -> 7.0.4] - options mishmash bug
+        switch (option) {
+            case AVAudioSessionInterruptionTypeEnded: // actually - AVAudioSessionInterruptionTypeBegan
+#ifdef RSStreamerTrace
+                NSLog(@"Case: interruption began!");
+#endif
+                if ([self isPlaying]) {
+                    [self pause];
+                    
+                    self.pausedByInterruption = YES;
+                }
+                break;
+            case AVAudioSessionInterruptionTypeBegan: // actually - AVAudioSessionInterruptionTypeEnded
+#ifdef RSStreamerTrace
+                NSLog(@"Case: interruption ended!");
+#endif
+                if ([self isPaused] && _pausedByInterruption) {
+                    [self play];
+                    
+                    self.pausedByInterruption = NO;
+                }
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (option) {
+            case AVAudioSessionInterruptionTypeBegan:
+#ifdef RSStreamerTrace
+                NSLog(@"Case: interruption began!");
+#endif
+                if ([self isPlaying]) {
+                    [self pause];
+                    
+                    self.pausedByInterruption = YES;
+                }
+                break;
+            case AVAudioSessionInterruptionTypeEnded:
+#ifdef RSStreamerTrace
+                NSLog(@"Case: interruption ended!");
+#endif
+                if ([self isPaused] && _pausedByInterruption) {
+                    [self play];
+                    
+                    self.pausedByInterruption = NO;
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
 

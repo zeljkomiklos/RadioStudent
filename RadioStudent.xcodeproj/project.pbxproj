@@ -24,6 +24,8 @@
 		1C28C9F3186093CB00CB726C /* RadioStudentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9F2186093CB00CB726C /* RadioStudentTests.m */; };
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
+		1CB196791865907D00CA4475 /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB196781865907D00CA4475 /* RSFeeds.m */; };
+		1CB1967C1865948D00CA4475 /* Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1967B1865948D00CA4475 /* Version.m */; };
 		1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */; };
 		1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F21864ED0000FD2CB9 /* Reachability.m */; };
 		1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F51864ED1300FD2CB9 /* RSStreamer.m */; };
@@ -44,7 +46,7 @@
 		1C1C828518609E7F002E07F0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1C1C828718609EE1002E07F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1C1C828818609EE1002E07F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		1C1C828A1860A07F002E07F0 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		1C1C828A1860A07F002E07F0 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = RadioStudent/Constants.h; sourceTree = "<group>"; };
 		1C1C828F1860A827002E07F0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1C28C9C4186093CB00CB726C /* RadioStudent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioStudent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C28C9C7186093CB00CB726C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +66,10 @@
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1CB196771865907D00CA4475 /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFeeds.h; sourceTree = "<group>"; };
+		1CB196781865907D00CA4475 /* RSFeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFeeds.m; sourceTree = "<group>"; };
+		1CB1967A1865948D00CA4475 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		1CB1967B1865948D00CA4475 /* Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Version.m; sourceTree = "<group>"; };
 		1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = Vendors/AudioStreamer.h; sourceTree = "<group>"; };
 		1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = Vendors/AudioStreamer.m; sourceTree = "<group>"; };
 		1CE387F11864ED0000FD2CB9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Vendors/Reachability.h; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 		1C1C828118609DCB002E07F0 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				1CB1967A1865948D00CA4475 /* Version.h */,
+				1CB1967B1865948D00CA4475 /* Version.m */,
 				1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */,
 				1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */,
 				1CE387F11864ED0000FD2CB9 /* Reachability.h */,
@@ -114,6 +122,7 @@
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
+				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1CE387EE1864ECE700FD2CB9 /* Common */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
 				1C1C828118609DCB002E07F0 /* Vendors */,
@@ -148,7 +157,6 @@
 		1C28C9CD186093CB00CB726C /* RadioStudent */ = {
 			isa = PBXGroup;
 			children = (
-				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1C28C9D6186093CB00CB726C /* AppDelegate.h */,
 				1C28C9D7186093CB00CB726C /* AppDelegate.m */,
 				1C1C828718609EE1002E07F0 /* MainViewController.h */,
@@ -194,9 +202,11 @@
 			isa = PBXGroup;
 			children = (
 				1CE387F51864ED1300FD2CB9 /* RSStreamer.m */,
-				1CE387F61864ED1300FD2CB9 /* RSPlayer.m */,
 				1CE387F71864ED1300FD2CB9 /* RSStreamer.h */,
+				1CE387F61864ED1300FD2CB9 /* RSPlayer.m */,
 				1CE387F81864ED1300FD2CB9 /* RSPlayer.h */,
+				1CB196771865907D00CA4475 /* RSFeeds.h */,
+				1CB196781865907D00CA4475 /* RSFeeds.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -307,7 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CB196791865907D00CA4475 /* RSFeeds.m in Sources */,
 				1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */,
+				1CB1967C1865948D00CA4475 /* Version.m in Sources */,
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
 				1CE387FA1864ED1300FD2CB9 /* RSPlayer.m in Sources */,

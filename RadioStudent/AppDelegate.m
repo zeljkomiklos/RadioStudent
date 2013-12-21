@@ -21,6 +21,12 @@
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
+    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:1 * 1024 * 1024
+                                                         diskCapacity:4 * 1024 * 1024
+                                                             diskPath:nil];
+    [NSURLCache setSharedURLCache:URLCache];
+
+    
     return YES;
 }
 							

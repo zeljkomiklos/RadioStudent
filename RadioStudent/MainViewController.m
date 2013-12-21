@@ -9,11 +9,13 @@
 #import "MainViewController.h"
 #import "Constants.h"
 #import "RSPlayer.h"
+#import "RSFeeds.h"
 
 
 @interface MainViewController ()
 
 @property (strong, nonatomic) RSPlayer *player;
+@property (strong, nonatomic) RSFeeds *feeds;
 
 @end
 
@@ -40,9 +42,20 @@
     [super viewDidLoad];
     
     self.player = [RSPlayer playerWithURL:[NSURL URLWithString:RS_LIVE_STREAM_URL]];
+    self.feeds = [RSFeeds feedsWithURL:[NSURL URLWithString:RS_FEEDS_URL]];
     
     [_player wakeUp];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(feedsLoadedNotif:) name:RS_FEEDS_LOADED_NOTIF object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -56,8 +69,16 @@
     if(_player.isPlaying) {
         [_player stop];
     } else {
+        [_feeds fetch];
         [_player start];
     }
+}
+
+
+#pragma mark - Feeds
+
+- (void)feedsLoadedNotif:(NSNotification *)notif {
+    NSLog(@"Feeds: %@", _feeds.feeds);
 }
 
 
@@ -67,7 +88,5 @@
 {
     [_player remoteControlReceivedWithEvent:(UIEvent *)receivedEvent];
 }
-
-
 
 @end
