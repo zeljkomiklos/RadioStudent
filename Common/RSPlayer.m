@@ -22,7 +22,8 @@
 @property (nonatomic) BOOL disconnected;
 @property (strong, nonatomic) NSURL *url;
 @property (strong, nonatomic) RSStreamer *streamer;
-@property (strong, nonatomic) Reachability *reachability;
+@property (strong, nonatomic) Reachability *wwanReachability;
+@property (strong, nonatomic) Reachability *wifiReachability;
 
 
 @end
@@ -49,11 +50,13 @@
 - (void)wakeUp {
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
-    self.reachability = [Reachability reachabilityForInternetConnection];
+    self.wwanReachability = [Reachability reachabilityForInternetConnection];
+    self.wifiReachability = [Reachability reachabilityForLocalWiFi];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-    
-    [_reachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChangedNotif:) name:kReachabilityChangedNotification object:nil];
+
+    [_wwanReachability startNotifier];
+    [_wifiReachability startNotifier];
 
     _bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         [[UIApplication sharedApplication] endBackgroundTask:_bgTask];
@@ -62,8 +65,11 @@
 }
 
 - (void)tearDown {
-    [_reachability stopNotifier];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    [_wwanReachability stopNotifier];
+    [_wifiReachability stopNotifier];
+
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
     
     if(_bgTask != UIBackgroundTaskInvalid) {
@@ -73,6 +79,7 @@
     [self stop];
     
     self.streamer = nil;
+    
 }
 
 
@@ -83,6 +90,11 @@
 }
 
 - (BOOL)start {
+    if(_streamer != nil) {
+        [_streamer stop];
+        self.streamer = nil;
+    }
+    
     self.streamer = [RSStreamer streamWithURL:_url];
 
     return [_streamer start];
@@ -117,29 +129,25 @@
 
 #pragma mark - Reachability
 
-- (void)reachabilityChanged:(NSNotification *)notif {
+- (void)reachabilityChangedNotif:(NSNotification *)notif {
     Reachability *reach = [notif object];
     
     NetworkStatus netStatus = [reach currentReachabilityStatus];
     BOOL internetConnectionAvailable = (netStatus == ReachableViaWiFi || netStatus == ReachableViaWWAN);
     
-    if ([self isPlaying] && !internetConnectionAvailable) {
-        self.disconnected = YES;
-        
-#ifdef DEBUG
-        NSLog(@"RSPlayer: disconnected");
-#endif
-        return;
+    if(!!internetConnectionAvailable) {
+        NSLog(@"RSPlayer: disconnected!");
+        self.disconnected = TRUE;
     }
     
     if (_disconnected && internetConnectionAvailable) {
         self.disconnected = NO;
         
 #ifdef DEBUG
-        NSLog(@"RSPlayer: retry connection in 3 secs");
+        NSLog(@"RSPlayer: retry connection in 5 secs");
 #endif
         
-        [NSTimer scheduledTimerWithTimeInterval:3
+        [NSTimer scheduledTimerWithTimeInterval:5
                                          target:self
                                        selector:@selector(start)
                                        userInfo:nil
