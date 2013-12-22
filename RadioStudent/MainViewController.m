@@ -13,6 +13,7 @@
 #import "RSFeeds.h"
 #import "RSImage.h"
 
+#define NORMAL_FONT_SIZE 15
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -195,6 +196,14 @@
     UILabel *subLabel = (UILabel *)[cell viewWithTag:2];
     subLabel.text = feed[@"mb_subtitle"];
     
+    if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        titleLabel.font = [titleLabel.font fontWithSize:(NORMAL_FONT_SIZE + 2) * 1.1];
+        subLabel.font = [subLabel.font fontWithSize:NORMAL_FONT_SIZE * 1.2];
+    } else {
+        titleLabel.font = [titleLabel.font fontWithSize:(NORMAL_FONT_SIZE + 2)];
+        subLabel.font = [subLabel.font fontWithSize:NORMAL_FONT_SIZE];
+    }
+
     return cell;
     
 }
@@ -205,10 +214,8 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
     CGSize contentView = collectionView.frame.size;
-    if(UIDeviceOrientationIsPortrait(orientation)) {
+    if(UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
         if((indexPath.row % 2) == 0) {
             return CGSizeMake(100, 100); // image size
         }

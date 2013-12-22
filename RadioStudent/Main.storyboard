@@ -57,10 +57,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="JOr-ZB-VwD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="43" id="BKx-yX-QvM"/>
+                                                        <constraint firstAttribute="height" constant="48" id="BKx-yX-QvM"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label Label Label Label Label Label Label Label">
@@ -73,7 +73,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-p0-fq0">
-                                                    <rect key="frame" x="0.0" y="43" width="208" height="57"/>
+                                                    <rect key="frame" x="0.0" y="45" width="208" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>
@@ -92,7 +92,7 @@
                                         <constraints>
                                             <constraint firstItem="fCg-p0-fq0" firstAttribute="leading" secondItem="LyI-CW-hae" secondAttribute="leading" id="6tw-Gu-cAo"/>
                                             <constraint firstItem="fCg-p0-fq0" firstAttribute="trailing" secondItem="JOr-ZB-VwD" secondAttribute="trailing" id="M7h-wn-5kh"/>
-                                            <constraint firstItem="fCg-p0-fq0" firstAttribute="top" secondItem="JOr-ZB-VwD" secondAttribute="bottom" id="TIb-lW-8GJ"/>
+                                            <constraint firstItem="fCg-p0-fq0" firstAttribute="top" secondItem="JOr-ZB-VwD" secondAttribute="bottom" constant="-3" id="TIb-lW-8GJ"/>
                                             <constraint firstItem="JOr-ZB-VwD" firstAttribute="top" secondItem="LyI-CW-hae" secondAttribute="top" id="aAW-7r-1pE"/>
                                             <constraint firstAttribute="trailing" secondItem="fCg-p0-fq0" secondAttribute="trailing" constant="2" id="aEL-Kg-JKc"/>
                                             <constraint firstAttribute="bottom" secondItem="fCg-p0-fq0" secondAttribute="bottom" id="jOe-CW-p9W"/>
