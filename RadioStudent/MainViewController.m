@@ -138,15 +138,16 @@
     }
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout) invalidateLayout];
+}
 
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if(_feeds.feeds.count > 0) {
-        return _feeds.feeds.count * 2; // image & feed cells
-    }
-    return 0;
+    return _feeds.feeds.count * 2; // image & feed cells
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind
@@ -178,7 +179,6 @@
         
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"IconCell" forIndexPath:indexPath];
         if(icon.image != nil) {
-            
             UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
             imageView.image = icon.image;
         }
@@ -212,12 +212,12 @@
         if((indexPath.row % 2) == 0) {
             return CGSizeMake(100, 100); // image size
         }
-        return CGSizeMake(contentView.width - 100 - 6 * RS_SPACING, 100); // feed size
+        return CGSizeMake(contentView.width - 100 - 3 * RS_SPACING, 100); // feed size
     } else {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(180, 100); // image size
+            return CGSizeMake(160, 100); // image size
         }
-        return CGSizeMake(contentView.width - 180 - 6 * RS_SPACING, 100); // feed size
+        return CGSizeMake(contentView.width - 160 - 3 * RS_SPACING, 100); // feed size
     }
     [NSException raise:@"Illegal state!" format:nil];
     return CGSizeMake(0, 0);
