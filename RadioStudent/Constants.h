@@ -9,8 +9,6 @@
 #ifndef RadioStudent_Constants_h
 #define RadioStudent_Constants_h
 
-#define RS_SPACING 2
-
 #define RS_LIVE_STREAM_URL @"http://kruljo.radiostudent.si:8000/ehiq"
 #define RS_HOST_URL @"http://radiostudent.si"
 #define RS_FEEDS_URL @"http://radiostudent.si/json-mobile"

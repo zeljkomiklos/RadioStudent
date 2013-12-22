@@ -14,6 +14,7 @@
 #import "RSImage.h"
 
 #define NORMAL_FONT_SIZE 15
+#define CELL_SPACING 2
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -217,14 +218,14 @@
     CGSize contentView = collectionView.frame.size;
     if(UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(100, 100); // image size
+            return CGSizeMake(100, 104); // image size
         }
-        return CGSizeMake(contentView.width - 100 - 3 * RS_SPACING, 100); // feed size
+        return CGSizeMake(contentView.width - 100 - 3 * CELL_SPACING, 104); // feed size
     } else {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(160, 100); // image size
+            return CGSizeMake(160, 104); // image size
         }
-        return CGSizeMake(contentView.width - 160 - 3 * RS_SPACING, 100); // feed size
+        return CGSizeMake(contentView.width - 160 - 3 * CELL_SPACING, 104); // feed size
     }
     [NSException raise:@"Illegal state!" format:nil];
     return CGSizeMake(0, 0);

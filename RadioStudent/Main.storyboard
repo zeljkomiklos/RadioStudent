@@ -24,18 +24,18 @@
                                     <size key="itemSize" width="147" height="96"/>
                                     <size key="headerReferenceSize" width="56" height="82"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconCell" id="UCI-gm-hZi">
-                                        <rect key="frame" x="2" y="84" width="100" height="100"/>
+                                        <rect key="frame" x="2" y="84" width="100" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="example" translatesAutoresizingMaskIntoConstraints="NO" id="aAH-Xo-45Q">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <rect key="frame" x="0.0" y="2" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -43,17 +43,17 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="aAH-Xo-45Q" firstAttribute="leading" secondItem="UCI-gm-hZi" secondAttribute="leading" id="KSu-47-OYw"/>
-                                            <constraint firstAttribute="bottom" secondItem="aAH-Xo-45Q" secondAttribute="bottom" id="hqY-Eu-I7l"/>
+                                            <constraint firstAttribute="bottom" secondItem="aAH-Xo-45Q" secondAttribute="bottom" constant="2" id="hqY-Eu-I7l"/>
                                             <constraint firstAttribute="trailing" secondItem="aAH-Xo-45Q" secondAttribute="trailing" id="oXI-2y-cTa"/>
-                                            <constraint firstItem="aAH-Xo-45Q" firstAttribute="top" secondItem="UCI-gm-hZi" secondAttribute="top" id="vB6-ZK-2iR"/>
+                                            <constraint firstItem="aAH-Xo-45Q" firstAttribute="top" secondItem="UCI-gm-hZi" secondAttribute="top" constant="2" id="vB6-ZK-2iR"/>
                                         </constraints>
-                                        <size key="customSize" width="100" height="100"/>
+                                        <size key="customSize" width="100" height="104"/>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeedCell" id="LyI-CW-hae">
-                                        <rect key="frame" x="104" y="84" width="210" height="100"/>
+                                        <rect key="frame" x="104" y="84" width="210" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="210" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="210" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="JOr-ZB-VwD">
@@ -73,7 +73,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-p0-fq0">
-                                                    <rect key="frame" x="0.0" y="45" width="208" height="55"/>
+                                                    <rect key="frame" x="0.0" y="43" width="208" height="68"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment>
@@ -92,13 +92,13 @@
                                         <constraints>
                                             <constraint firstItem="fCg-p0-fq0" firstAttribute="leading" secondItem="LyI-CW-hae" secondAttribute="leading" id="6tw-Gu-cAo"/>
                                             <constraint firstItem="fCg-p0-fq0" firstAttribute="trailing" secondItem="JOr-ZB-VwD" secondAttribute="trailing" id="M7h-wn-5kh"/>
-                                            <constraint firstItem="fCg-p0-fq0" firstAttribute="top" secondItem="JOr-ZB-VwD" secondAttribute="bottom" constant="-3" id="TIb-lW-8GJ"/>
+                                            <constraint firstItem="fCg-p0-fq0" firstAttribute="top" secondItem="JOr-ZB-VwD" secondAttribute="bottom" constant="-5" id="TIb-lW-8GJ"/>
                                             <constraint firstItem="JOr-ZB-VwD" firstAttribute="top" secondItem="LyI-CW-hae" secondAttribute="top" id="aAW-7r-1pE"/>
                                             <constraint firstAttribute="trailing" secondItem="fCg-p0-fq0" secondAttribute="trailing" constant="2" id="aEL-Kg-JKc"/>
-                                            <constraint firstAttribute="bottom" secondItem="fCg-p0-fq0" secondAttribute="bottom" id="jOe-CW-p9W"/>
+                                            <constraint firstAttribute="bottom" secondItem="fCg-p0-fq0" secondAttribute="bottom" constant="-7" id="jOe-CW-p9W"/>
                                             <constraint firstItem="fCg-p0-fq0" firstAttribute="leading" secondItem="JOr-ZB-VwD" secondAttribute="leading" id="nms-EB-faX"/>
                                         </constraints>
-                                        <size key="customSize" width="210" height="100"/>
+                                        <size key="customSize" width="210" height="104"/>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NavigationView" id="rn9-C3-TAW">
