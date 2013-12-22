@@ -9,9 +9,9 @@
 @import AVFoundation;
 
 #import "RSStreamer.h"
+#import "Constants.h"
 #import "Version.h"
 
-#define RSStreamerTrace
 #define RSDefaultNumAQBufs 32
 #define RSDefaultAQDefaultBufSize 4096
 
@@ -43,13 +43,22 @@
     
     self.version = [[Version alloc] initWithString:[[UIDevice currentDevice] systemVersion]];
     
+    
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
 #pragma mark - Control
 
 - (BOOL)start {
+#ifdef DEBUG
+    NSLog(@"RSStreamer: start");
+#endif
+
     if(![super start]) {
         return NO;
     }
@@ -72,20 +81,26 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruptionOcurred:) name:AVAudioSessionInterruptionNotification object:nil];
     
-    
     return TRUE;
 }
 
 - (void)stop {
+#ifdef DEBUG
+    NSLog(@"RSStreamer: stop");
+#endif
+    
     [super stop];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
     
     NSError *deactivationError = nil;
     BOOL success = [[AVAudioSession sharedInstance] setActive:NO error:&deactivationError];
-    if (!success) {
+    if(success) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:RS_STOP_NOTIF object:nil];
+    } else {
         NSLog(@"%@", [deactivationError localizedDescription]);
     }
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)togglePlayPause {
@@ -102,6 +117,24 @@
     return FALSE;
 }
 
+- (BOOL)play {
+#ifdef DEBUG
+    NSLog(@"RSStreamer: play");
+#endif
+    return [super play];
+}
+
+- (BOOL)pause {
+#ifdef DEBUG
+    NSLog(@"RSStreamer: pause");
+#endif
+    BOOL ok = [super pause];
+    if(ok) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:RS_PAUSE_NOTIF object:nil];
+    }
+    return ok;
+}
+
 
 #pragma mark - AVAudioSessionInterruptionNotification
 
@@ -111,8 +144,8 @@
         // iOS [7.0.0 -> 7.0.4] - options mishmash bug
         switch (option) {
             case AVAudioSessionInterruptionTypeEnded: // actually - AVAudioSessionInterruptionTypeBegan
-#ifdef RSStreamerTrace
-                NSLog(@"Case: interruption began!");
+#ifdef DEBUG
+                NSLog(@"RSStreamer: interruption began");
 #endif
                 if ([self isPlaying]) {
                     [self pause];
@@ -121,8 +154,8 @@
                 }
                 break;
             case AVAudioSessionInterruptionTypeBegan: // actually - AVAudioSessionInterruptionTypeEnded
-#ifdef RSStreamerTrace
-                NSLog(@"Case: interruption ended!");
+#ifdef DEBUG
+                NSLog(@"RSStreamer: interruption ended");
 #endif
                 if ([self isPaused] && _pausedByInterruption) {
                     [self play];
@@ -136,8 +169,8 @@
     } else {
         switch (option) {
             case AVAudioSessionInterruptionTypeBegan:
-#ifdef RSStreamerTrace
-                NSLog(@"Case: interruption began!");
+#ifdef DEBUG
+                NSLog(@"RSStreamer: interruption began");
 #endif
                 if ([self isPlaying]) {
                     [self pause];
@@ -146,8 +179,8 @@
                 }
                 break;
             case AVAudioSessionInterruptionTypeEnded:
-#ifdef RSStreamerTrace
-                NSLog(@"Case: interruption ended!");
+#ifdef DEBUG
+                NSLog(@"RSStreamer: interruption ended");
 #endif
                 if ([self isPaused] && _pausedByInterruption) {
                     [self play];

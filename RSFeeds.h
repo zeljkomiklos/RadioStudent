@@ -10,12 +10,13 @@
 
 @interface RSFeeds : NSObject
 
-@property (strong, nonatomic) NSDictionary *feeds;
+@property (readonly, nonatomic) NSArray *feeds;
+@property (readonly, nonatomic) NSDictionary *icons;
 
 + (RSFeeds *)feedsWithURL:(NSURL *)feedsUrl;
 
 - (void)fetch;
 
-- (NSArray *)feed:(NSString *)mbLink;
+- (NSArray *)feedContent:(NSInteger)index;
 
 @end

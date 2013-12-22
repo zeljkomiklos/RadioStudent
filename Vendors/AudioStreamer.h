@@ -30,6 +30,10 @@
 /* Maximum number of packets which can be contained in one buffer */
 #define kAQMaxPacketDescs 512
 
+
+#define AUDIO_STREAMER_ERROR_NOTIF @"AUDIO_STREAMER_ERROR"
+#define AUDIO_STREAMER_PLAYING_NOTIF @"AUDIO_STREAMER_PLAYING"
+
 typedef enum {
   AS_INITIALIZED = 0,
   AS_WAITING_FOR_DATA,

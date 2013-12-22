@@ -7,11 +7,14 @@
 //
 
 #import "RSFeeds.h"
+#import "RSImage.h"
 #import "Constants.h"
 
 @interface RSFeeds ()
 
 @property (strong, nonatomic) NSURL *feedsUrl;
+@property (strong, nonatomic) NSArray *feeds;
+@property (strong, nonatomic) NSDictionary *icons;
 
 @end
 
@@ -36,31 +39,51 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                                if(connectionError) {
-                                   NSLog(@"RSFeeds request failed: connection-error = %@!", connectionError);
+                                   NSLog(@"RSFeeds request failed: connection-error = %@", connectionError);
                                    return;
                                }
                                
                                NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
                                if(responseCode != 200) {
-                                   NSLog(@"RSFeeds request failed: response-code = %d!", (int)responseCode);
+                                   NSLog(@"RSFeeds request failed: response-code = %d", (int)responseCode);
                                    return;
                                }
                                
                                NSError *jsonError = nil;
                                NSDictionary *index = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
                                if(jsonError) {
-                                   NSLog(@"RSFeeds json parser failed: json-error = %@!", jsonError);
+                                   NSLog(@"RSFeeds json parser failed: json-error = %@", jsonError);
                                    self.feeds = nil;
                                    return;
                                }
-                               self.feeds = index;
+                               
+                               self.feeds = index[@"nodes"];
+                               
+                               NSMutableDictionary *dict = [NSMutableDictionary dictionary];
                                
                                [[NSNotificationCenter defaultCenter] postNotificationName:RS_FEEDS_LOADED_NOTIF object:nil];
+                               
+                               for (NSDictionary *node in _feeds) {
+                                   NSDictionary *feed = node[@"node"];
+                                   NSString *imageUrl = feed[@"mb_image"];
+                                   if(imageUrl != nil) {
+                                       NSURL *url = [NSURL URLWithString:imageUrl];
+                                       [dict setObject:[RSImage imageWithURL:url] forKey:imageUrl];
+                                   }
+                               }
+                               
+                               self.icons = dict;
                            }];
     
 }
 
-- (NSArray *)feed:(NSString *)mbLink {
+
+//
+//
+//
+
+
+- (NSArray *)feedContent:(NSInteger)index {
     return nil;
 }
 
