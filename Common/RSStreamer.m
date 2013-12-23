@@ -95,12 +95,9 @@
     
     NSError *deactivationError = nil;
     BOOL success = [[AVAudioSession sharedInstance] setActive:NO error:&deactivationError];
-    if(success) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:RS_STOP_NOTIF object:nil];
-    } else {
+    if(!success) {
         NSLog(@"%@", [deactivationError localizedDescription]);
     }
-    
 }
 
 - (BOOL)togglePlayPause {
@@ -128,11 +125,7 @@
 #ifdef DEBUG
     NSLog(@"RSStreamer: pause");
 #endif
-    BOOL ok = [super pause];
-    if(ok) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:RS_PAUSE_NOTIF object:nil];
-    }
-    return ok;
+    return [super pause];
 }
 
 

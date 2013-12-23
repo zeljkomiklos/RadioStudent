@@ -14,13 +14,17 @@
 #import "RSImage.h"
 
 #define NORMAL_FONT_SIZE 15
-#define CELL_SPACING 2
+#define AUDIO_STREAM_DONE  @"Dotik za Vklop"
+#define AUDIO_STREAM_WAITING @"..."
+#define AUDIO_STREAM_PLAYING @"Dotik za Izklop"
+#define AUDIO_STREAM_PAUSED @"Pavza"
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (strong, nonatomic) RSPlayer *player;
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
+@property (strong, nonatomic) NSString *statusInfo;
 
 @end
 
@@ -54,6 +58,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
+    self.statusInfo = AUDIO_STREAM_DONE;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -61,8 +66,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageLoadedNotif:) name:RS_IMAGE_LOADED_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerErrorNotif:) name:AUDIO_STREAMER_ERROR_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerPlayingNotif:) name:AUDIO_STREAMER_PLAYING_NOTIF object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUi) name:RS_STOP_NOTIF object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUi) name:RS_PAUSE_NOTIF object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerStatusChangedNotif:) name:ASStatusChangedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -108,6 +112,20 @@
 
 - (void)audioStreamerPlayingNotif:(NSNotification *)notif {
     self.error = nil;
+    [self updateUi];
+}
+
+- (void)audioStreamerStatusChangedNotif:(NSNotification *)notif {
+    AudioStreamer *as = notif.object;
+    if(as.isDone) {
+        self.statusInfo = AUDIO_STREAM_DONE;
+    } else if(as.isPaused) {
+        self.statusInfo = AUDIO_STREAM_PAUSED;
+    } else if(as.isWaiting) {
+        self.statusInfo = AUDIO_STREAM_WAITING;
+    } else if(as.isPlaying) {
+        self.statusInfo = AUDIO_STREAM_PLAYING;
+    }
     [self updateUi];
 }
 
@@ -212,25 +230,29 @@
 
 #pragma mark - UICollectionViewDelegate
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewFlowLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGSize contentView = collectionView.frame.size;
+    CGFloat w = [[self class] totalContentWidth:collectionView layout:collectionViewLayout cellCount:2];
+    
     if(UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(100, 104); // image size
+            return CGSizeMake(100, 110); // image size
         }
-        return CGSizeMake(contentView.width - 100 - 3 * CELL_SPACING, 104); // feed size
+        return CGSizeMake(w - 100, 110); // feed size
     } else {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(160, 104); // image size
+            return CGSizeMake(160, 110); // image size
         }
-        return CGSizeMake(contentView.width - 160 - 3 * CELL_SPACING, 104); // feed size
+        return CGSizeMake(w - 160, 110); // feed size
     }
     [NSException raise:@"Illegal state!" format:nil];
     return CGSizeMake(0, 0);
 }
 
++ (CGFloat)totalContentWidth:(UICollectionView *)collectionView  layout:(UICollectionViewFlowLayout *)layout cellCount:(NSUInteger)itemCount {
+    return CGRectGetWidth(collectionView.frame) - layout.sectionInset.left - layout.sectionInset.right - (itemCount - 1) * layout.minimumInteritemSpacing;
+}
 
 
 #pragma mark - Private
@@ -241,13 +263,9 @@
 
 - (NSString *)statusText {
     if(_error) {
-        return [NSString stringWithFormat:@"Dotik za Vklop [%@]", _error];
+        return [NSString stringWithFormat:@"%@ [%@]", _statusInfo, _error];
     }
-    
-    if(_player.isPlaying) {
-        return @"Dotik za Izklop";
-    }
-    return @"Dotik za Vklop";
+    return [NSString stringWithFormat:@"%@", _statusInfo];
 }
 
 @end

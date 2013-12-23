@@ -495,9 +495,7 @@ static void ASReadStreamCallBack(CFReadStreamRef aStream, CFStreamEventType even
     if (state_ == aStatus) return;
     state_ = aStatus;
     
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:ASStatusChangedNotification
-     object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ASStatusChangedNotification object:self];
 }
 
 /**
