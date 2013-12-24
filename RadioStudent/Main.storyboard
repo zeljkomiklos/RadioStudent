@@ -167,7 +167,6 @@
         <!--Navigation Controller-->
         <scene sceneID="xdQ-WD-e7q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c6x-fW-n69" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="h6Q-MC-xvd" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gvn-mc-606">
@@ -177,6 +176,7 @@
                         <segue destination="bTs-0D-JEj" kind="relationship" relationship="rootViewController" id="I23-sD-a10"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c6x-fW-n69" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-390" y="108"/>
         </scene>

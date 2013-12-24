@@ -6,9 +6,9 @@ RŠ for iPhone iOS 7+.
 
 ## Project specification
 
-Play audio stream.
+### Play audio stream.
 
-### Audio streams
+#### Audio streams
 
 mp3 stream 192kb/s: http://kruljo.radiostudent.si:8000/ehiq
 
