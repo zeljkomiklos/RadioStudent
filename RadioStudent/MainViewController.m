@@ -13,6 +13,8 @@
 #import "RSFeeds.h"
 #import "RSImage.h"
 
+#import "ArticleController.h"
+
 #define NORMAL_FONT_SIZE 15
 #define AUDIO_STREAM_DONE  @"Dotik za Vklop"
 #define AUDIO_STREAM_WAITING @"..."
@@ -25,6 +27,8 @@
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
 @property (strong, nonatomic) NSString *statusInfo;
+@property (strong, nonatomic) NSDictionary *presentingFeed;
+@property (nonatomic) UIDeviceOrientation orientation;
 
 @end
 
@@ -59,6 +63,12 @@
     _collectionView.dataSource = self;
     
     self.statusInfo = AUDIO_STREAM_DONE;
+    self.orientation = [UIDevice currentDevice].orientation;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = TRUE;
+    self.navigationController.navigationBar.backItem.title = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,6 +88,22 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark - Navigation
+
+- (void)presentArticle:(NSDictionary *)feed {
+    self.presentingFeed = feed;
+    [self performSegueWithIdentifier:@"pushArticle" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"pushArticle"]) {
+        ArticleController *controller = (ArticleController *)segue.destinationViewController;
+        controller.feed = _presentingFeed;
+        self.presentingFeed = nil;
+    }
 }
 
 
@@ -143,12 +169,16 @@
 }
 
 
-
 #pragma mark - UIViewControllerRotation
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:orientation duration:duration];
+    self.orientation = orientation;
+    [((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout) invalidateLayout];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation {
@@ -156,11 +186,6 @@
         || (orientation == UIInterfaceOrientationPortrait)) {
         [_collectionView reloadData];
     }
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout) invalidateLayout];
 }
 
 
@@ -235,7 +260,7 @@
     
     CGFloat w = [[self class] totalContentWidth:collectionView layout:collectionViewLayout cellCount:2];
     
-    if(UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
+    if(UIDeviceOrientationIsPortrait(_orientation)) {
         if((indexPath.row % 2) == 0) {
             return CGSizeMake(100, 110); // image size
         }
@@ -250,8 +275,9 @@
     return CGSizeMake(0, 0);
 }
 
-+ (CGFloat)totalContentWidth:(UICollectionView *)collectionView  layout:(UICollectionViewFlowLayout *)layout cellCount:(NSUInteger)itemCount {
-    return CGRectGetWidth(collectionView.frame) - layout.sectionInset.left - layout.sectionInset.right - (itemCount - 1) * layout.minimumInteritemSpacing;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *feed = _feeds.feeds[indexPath.row / 2][@"node"];
+    [self presentArticle:feed];
 }
 
 
@@ -267,5 +293,13 @@
     }
     return [NSString stringWithFormat:@"%@", _statusInfo];
 }
+
+
+#pragma mark - Helpers
+
++ (CGFloat)totalContentWidth:(UICollectionView *)collectionView  layout:(UICollectionViewFlowLayout *)layout cellCount:(NSUInteger)itemCount {
+    return CGRectGetWidth(collectionView.frame) - layout.sectionInset.left - layout.sectionInset.right - (itemCount - 1) * layout.minimumInteritemSpacing;
+}
+
 
 @end

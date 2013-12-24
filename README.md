@@ -32,6 +32,10 @@ mp3 stream 192kb/s: http://kruljo.radiostudent.si:8000/ehiq (beta!)
 
 JSON feeds: http://radiostudent.si/json-mobile (experimental! usage of UICollectionView)
 
+Feed url: http://radiostudent.si/{nodes.node[i].mb_link} (open URL in WebView - basic implementation!)
+
+
+
 
 
 ## Vendor code

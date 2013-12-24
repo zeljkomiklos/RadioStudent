@@ -58,8 +58,7 @@
     }
     
     self.fetching = TRUE;
-    dispatch_queue_t backgroundQueue  = dispatch_queue_create("si.radiostudent.bgqueue", NULL);
-    dispatch_async(backgroundQueue, ^(void) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfURL:_url options:NSDataReadingMappedIfSafe error:&error];
         if(error != nil) {
