@@ -22,11 +22,12 @@
 		1C28C9E9186093CB00CB726C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9CB186093CB00CB726C /* UIKit.framework */; };
 		1C28C9F1186093CB00CB726C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9EF186093CB00CB726C /* InfoPlist.strings */; };
 		1C28C9F3186093CB00CB726C /* RadioStudentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9F2186093CB00CB726C /* RadioStudentTests.m */; };
+		1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8951581869B67C00C4F3FF /* ArticleController.m */; };
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
 		1CB196791865907D00CA4475 /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB196781865907D00CA4475 /* RSFeeds.m */; };
 		1CB1967C1865948D00CA4475 /* Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1967B1865948D00CA4475 /* Version.m */; };
-		1CC4A26C18687E3500B46C9C /* ArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4A26B18687E3500B46C9C /* ArticleController.m */; };
+		1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4A26B18687E3500B46C9C /* WebArticleController.m */; };
 		1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */; };
 		1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F21864ED0000FD2CB9 /* Reachability.m */; };
 		1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F51864ED1300FD2CB9 /* RSStreamer.m */; };
@@ -66,14 +67,16 @@
 		1C28C9EE186093CB00CB726C /* RadioStudentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RadioStudentTests-Info.plist"; sourceTree = "<group>"; };
 		1C28C9F0186093CB00CB726C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
+		1C8951571869B67C00C4F3FF /* ArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleController.h; sourceTree = "<group>"; };
+		1C8951581869B67C00C4F3FF /* ArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleController.m; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1CB196771865907D00CA4475 /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFeeds.h; sourceTree = "<group>"; };
 		1CB196781865907D00CA4475 /* RSFeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFeeds.m; sourceTree = "<group>"; };
 		1CB1967A1865948D00CA4475 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
 		1CB1967B1865948D00CA4475 /* Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Version.m; sourceTree = "<group>"; };
-		1CC4A26A18687E3500B46C9C /* ArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleController.h; sourceTree = "<group>"; };
-		1CC4A26B18687E3500B46C9C /* ArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleController.m; sourceTree = "<group>"; };
+		1CC4A26A18687E3500B46C9C /* WebArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebArticleController.h; sourceTree = "<group>"; };
+		1CC4A26B18687E3500B46C9C /* WebArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebArticleController.m; sourceTree = "<group>"; };
 		1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = Vendors/AudioStreamer.h; sourceTree = "<group>"; };
 		1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = Vendors/AudioStreamer.m; sourceTree = "<group>"; };
 		1CE387F11864ED0000FD2CB9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Vendors/Reachability.h; sourceTree = "<group>"; };
@@ -167,8 +170,10 @@
 				1C28C9D7186093CB00CB726C /* AppDelegate.m */,
 				1C1C828718609EE1002E07F0 /* MainViewController.h */,
 				1C1C828818609EE1002E07F0 /* MainViewController.m */,
-				1CC4A26A18687E3500B46C9C /* ArticleController.h */,
-				1CC4A26B18687E3500B46C9C /* ArticleController.m */,
+				1CC4A26A18687E3500B46C9C /* WebArticleController.h */,
+				1CC4A26B18687E3500B46C9C /* WebArticleController.m */,
+				1C8951571869B67C00C4F3FF /* ArticleController.h */,
+				1C8951581869B67C00C4F3FF /* ArticleController.m */,
 				1C1C828518609E7F002E07F0 /* Main.storyboard */,
 				1C28C9DF186093CB00CB726C /* Images.xcassets */,
 				1C28C9CE186093CB00CB726C /* Supporting Files */,
@@ -333,9 +338,10 @@
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
 				1CE387FA1864ED1300FD2CB9 /* RSPlayer.m in Sources */,
+				1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */,
 				1CFC32E01865D06400300F25 /* RSImage.m in Sources */,
 				1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */,
-				1CC4A26C18687E3500B46C9C /* ArticleController.m in Sources */,
+				1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */,
 				1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */,
 				1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */,
 			);

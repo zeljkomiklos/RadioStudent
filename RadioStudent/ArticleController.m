@@ -2,21 +2,17 @@
 //  ArticleController.m
 //  RadioStudent
 //
-//  Created by tigor on 23. 12. 13.
+//  Created by tigor on 24. 12. 13.
 //  Copyright (c) 2013 Zavod Radio Študent Ljubljana. All rights reserved.
 //
 
 #import "ArticleController.h"
-#import "Constants.h"
 
 @interface ArticleController ()
 
 @end
 
 @implementation ArticleController
-
-
-#pragma mark - Lifecycle
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -29,22 +25,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = FALSE;
-    self.navigationItem.title = _feed[@"title"];
-    self.navigationController.navigationBar.backItem.title = @"RŠ";
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", RS_HOST_URL, _feed[@"mb_link"]]];
-    [_webView loadRequest:[NSURLRequest requestWithURL:url]];
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

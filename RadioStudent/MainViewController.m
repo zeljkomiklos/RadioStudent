@@ -13,13 +13,13 @@
 #import "RSFeeds.h"
 #import "RSImage.h"
 
-#import "ArticleController.h"
+#import "WebArticleController.h"
 
 #define NORMAL_FONT_SIZE 15
-#define AUDIO_STREAM_DONE  @"Dotik za Vklop"
-#define AUDIO_STREAM_WAITING @"..."
-#define AUDIO_STREAM_PLAYING @"Dotik za Izklop"
-#define AUDIO_STREAM_PAUSED @"Pavza"
+#define AUDIO_STREAM_DONE  @"Touch Me!"
+#define AUDIO_STREAM_WAITING @"Buffering ..."
+#define AUDIO_STREAM_PLAYING @"Don't touch me!"
+#define AUDIO_STREAM_PAUSED @"Paused!"
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -93,17 +93,22 @@
 
 #pragma mark - Navigation
 
-- (void)presentArticle:(NSDictionary *)feed {
+- (void)presentWebArticle:(NSDictionary *)feed {
     self.presentingFeed = feed;
-    [self performSegueWithIdentifier:@"pushArticle" sender:self];
+    [self performSegueWithIdentifier:@"pushWebArticle" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"pushArticle"]) {
-        ArticleController *controller = (ArticleController *)segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"pushWebArticle"]) {
+        WebArticleController *controller = (WebArticleController *)segue.destinationViewController;
+        controller.feed = _presentingFeed;
+        self.presentingFeed = nil;
+    } else if([segue.identifier isEqualToString:@"pushArticle"]) {
+        WebArticleController *controller = (WebArticleController *)segue.destinationViewController;
         controller.feed = _presentingFeed;
         self.presentingFeed = nil;
     }
+
 }
 
 
@@ -204,11 +209,18 @@
     UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                         withReuseIdentifier:@"NavigationView" forIndexPath:indexPath];
     
-    UILabel *statusLabel = (UILabel *)[view viewWithTag:2];
+    UILabel *statusLabel = (UILabel *)[view viewWithTag:1];
     statusLabel.text = [self statusText];
     
-    UIButton *playButton = (UIButton *)[view viewWithTag:3];
+    UIButton *playButton = (UIButton *)[view viewWithTag:2];
     [playButton addTarget:self action:@selector(playStopAction:) forControlEvents:UIControlEventTouchDown];
+    
+    UIView *bgView = [view viewWithTag:3];
+    if(_player.isPlaying) {
+        bgView.backgroundColor = [UIColor orangeColor];
+    } else {
+        bgView.backgroundColor = [UIColor clearColor];
+    }
     
     return view;
 }
@@ -262,9 +274,9 @@
     
     if(UIDeviceOrientationIsPortrait(_orientation)) {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(100, 110); // image size
+            return CGSizeMake(90, 90); // image size
         }
-        return CGSizeMake(w - 100, 110); // feed size
+        return CGSizeMake(w - 90, 110); // feed size
     } else {
         if((indexPath.row % 2) == 0) {
             return CGSizeMake(160, 110); // image size
@@ -277,7 +289,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *feed = _feeds.feeds[indexPath.row / 2][@"node"];
-    [self presentArticle:feed];
+    [self presentWebArticle:feed];
 }
 
 
