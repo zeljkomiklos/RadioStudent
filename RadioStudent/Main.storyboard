@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h6Q-MC-xvd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5037" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="h6Q-MC-xvd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -35,7 +35,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeedPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="aAH-Xo-45Q">
-                                                    <rect key="frame" x="5" y="10" width="90" height="90"/>
+                                                    <rect key="frame" x="5" y="5" width="90" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -43,9 +43,9 @@
                                         </view>
                                         <constraints>
                                             <constraint firstItem="aAH-Xo-45Q" firstAttribute="leading" secondItem="UCI-gm-hZi" secondAttribute="leading" constant="5" id="KSu-47-OYw"/>
-                                            <constraint firstAttribute="bottom" secondItem="aAH-Xo-45Q" secondAttribute="bottom" constant="10" id="hqY-Eu-I7l"/>
+                                            <constraint firstAttribute="bottom" secondItem="aAH-Xo-45Q" secondAttribute="bottom" constant="5" id="hqY-Eu-I7l"/>
                                             <constraint firstAttribute="trailing" secondItem="aAH-Xo-45Q" secondAttribute="trailing" constant="5" id="oXI-2y-cTa"/>
-                                            <constraint firstItem="aAH-Xo-45Q" firstAttribute="top" secondItem="UCI-gm-hZi" secondAttribute="top" constant="10" id="vB6-ZK-2iR"/>
+                                            <constraint firstItem="aAH-Xo-45Q" firstAttribute="top" secondItem="UCI-gm-hZi" secondAttribute="top" constant="5" id="vB6-ZK-2iR"/>
                                         </constraints>
                                         <size key="customSize" width="100" height="110"/>
                                     </collectionViewCell>
@@ -57,13 +57,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="JOr-ZB-VwD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="48"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="208" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="48" id="BKx-yX-QvM"/>
+                                                        <constraint firstAttribute="height" constant="44" id="BKx-yX-QvM"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="Label Label Label Label Label Label Label Label">
+                                                        <fragment content="a">
                                                             <attributes>
                                                                 <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
                                                                 <font key="NSOriginalFont" size="17" name="TimesNewRomanPS-BoldMT"/>
@@ -74,14 +74,15 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="208" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-p0-fq0">
-                                                    <rect key="frame" x="0.0" y="43" width="208" height="68"/>
+                                                    <rect key="frame" x="0.0" y="39" width="208" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="hjkdjdj dkjdj hdjhdj hdjgd hgdhgdhd ghdghd gdhgdhg dhfdgfdgfdgdfg">
+                                                        <fragment content="a">
                                                             <attributes>
-                                                                <font key="NSFont" size="14" name="HelveticaNeue-Light"/>
-                                                                <font key="NSOriginalFont" size="14" name="HelveticaNeue-UltraLight"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                                <color key="NSColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="17" name="Helvetica"/>
+                                                                <font key="NSOriginalFont" size="17" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="clipping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>

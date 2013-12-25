@@ -28,7 +28,7 @@
 @property (strong, nonatomic) NSString *error;
 @property (strong, nonatomic) NSString *statusInfo;
 @property (strong, nonatomic) NSDictionary *presentingFeed;
-@property (nonatomic) UIDeviceOrientation orientation;
+@property (nonatomic) UIInterfaceOrientation orientation;
 
 @end
 
@@ -63,7 +63,7 @@
     _collectionView.dataSource = self;
     
     self.statusInfo = AUDIO_STREAM_DONE;
-    self.orientation = [UIDevice currentDevice].orientation;
+    self.orientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -251,7 +251,7 @@
     
     UILabel *subLabel = (UILabel *)[cell viewWithTag:2];
     subLabel.text = feed[@"mb_subtitle"];
-    
+
     if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         titleLabel.font = [titleLabel.font fontWithSize:(NORMAL_FONT_SIZE + 2) * 1.1];
         subLabel.font = [subLabel.font fontWithSize:NORMAL_FONT_SIZE * 1.2];
@@ -274,9 +274,9 @@
     
     if(UIDeviceOrientationIsPortrait(_orientation)) {
         if((indexPath.row % 2) == 0) {
-            return CGSizeMake(90, 90); // image size
+            return CGSizeMake(100, 110); // image size
         }
-        return CGSizeMake(w - 90, 110); // feed size
+        return CGSizeMake(w - 100, 110); // feed size
     } else {
         if((indexPath.row % 2) == 0) {
             return CGSizeMake(160, 110); // image size
@@ -312,6 +312,7 @@
 + (CGFloat)totalContentWidth:(UICollectionView *)collectionView  layout:(UICollectionViewFlowLayout *)layout cellCount:(NSUInteger)itemCount {
     return CGRectGetWidth(collectionView.frame) - layout.sectionInset.left - layout.sectionInset.right - (itemCount - 1) * layout.minimumInteritemSpacing;
 }
+
 
 
 @end
