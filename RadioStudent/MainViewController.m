@@ -15,9 +15,10 @@
 
 #import "WebArticleController.h"
 
-#define NORMAL_FONT_SIZE 15
+#define TITLE_FONT_SIZE 15
+#define SUBTITLE_FONT_SIZE 14
 #define AUDIO_STREAM_DONE  @"Touch Me!"
-#define AUDIO_STREAM_WAITING @"Buffering ..."
+#define AUDIO_STREAM_WAITING @"Buffering..."
 #define AUDIO_STREAM_PLAYING @"Don't touch me!"
 #define AUDIO_STREAM_PAUSED @"Paused!"
 
@@ -108,7 +109,7 @@
         controller.feed = _presentingFeed;
         self.presentingFeed = nil;
     }
-
+    
 }
 
 
@@ -197,7 +198,7 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _feeds.feeds.count * 2; // image & feed cells
+    return _feeds.feeds.count * 3; // image & feed cells
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind
@@ -226,11 +227,25 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger _feedIndex = indexPath.row / 2;
+    NSInteger _feedIndex = indexPath.row / 3;
     
     NSDictionary *feed = _feeds.feeds[_feedIndex][@"node"];
-    if((indexPath.row % 2) == 0) {
-        // 0, 2, ... icons
+    if((indexPath.row % 3) == 0) {
+        // 0, 3, ... title
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TitleCell" forIndexPath:indexPath];
+        
+        UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
+        titleLabel.text = feed[@"title"];
+        
+        if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+            titleLabel.font = [titleLabel.font fontWithSize:TITLE_FONT_SIZE * 1.2];
+        } else {
+            titleLabel.font = [titleLabel.font fontWithSize:TITLE_FONT_SIZE];
+        }
+        return cell;
+    }
+    if((indexPath.row % 3) == 1) {
+        // 1, 4, ... icons
         NSString *key = feed[@"mb_image"];
         RSImage *icon = _feeds.icons[key];
         
@@ -243,23 +258,20 @@
         return cell;
     }
     
-    // 1, 3, ... feeds
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FeedCell" forIndexPath:indexPath];
+    // 2, 5, ... subtitles
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SubtitleCell" forIndexPath:indexPath];
     
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
-    titleLabel.text = feed[@"title"];
-    
-    UILabel *subLabel = (UILabel *)[cell viewWithTag:2];
-    subLabel.text = feed[@"mb_subtitle"];
-
+    UITextView *subtitleView = (UITextView *)[cell viewWithTag:1];
+    subtitleView.text = feed[@"mb_subtitle"];
+   
+    subtitleView.editable = TRUE;
     if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        titleLabel.font = [titleLabel.font fontWithSize:(NORMAL_FONT_SIZE + 2) * 1.1];
-        subLabel.font = [subLabel.font fontWithSize:NORMAL_FONT_SIZE * 1.2];
+        subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE * 1.2];
     } else {
-        titleLabel.font = [titleLabel.font fontWithSize:(NORMAL_FONT_SIZE + 2)];
-        subLabel.font = [subLabel.font fontWithSize:NORMAL_FONT_SIZE];
+        subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE];
     }
-
+    subtitleView.editable = FALSE;
+    
     return cell;
     
 }
@@ -273,22 +285,30 @@
     CGFloat w = [[self class] totalContentWidth:collectionView layout:collectionViewLayout cellCount:2];
     
     if(UIDeviceOrientationIsPortrait(_orientation)) {
-        if((indexPath.row % 2) == 0) {
-            return CGSizeMake(100, 110); // image size
+        if((indexPath.row % 3) == 0) {
+            return CGSizeMake(w, 50); // title size
         }
-        return CGSizeMake(w - 100, 110); // feed size
-    } else {
-        if((indexPath.row % 2) == 0) {
-            return CGSizeMake(160, 110); // image size
+        if((indexPath.row % 3) == 1) {
+            return CGSizeMake(90, 80); // image size
         }
-        return CGSizeMake(w - 160, 110); // feed size
+        return CGSizeMake(w - 90, 80); // subtitle size
     }
-    [NSException raise:@"Illegal state!" format:nil];
-    return CGSizeMake(0, 0);
+    
+    // landscape
+    
+    if((indexPath.row % 3) == 0) {
+        return CGSizeMake(w, 50); // title size
+    }
+    
+    if((indexPath.row % 3) == 1) {
+        return CGSizeMake(130, 90); // image size
+    }
+    
+    return CGSizeMake(w - 130, 90); // subtitle size
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *feed = _feeds.feeds[indexPath.row / 2][@"node"];
+    NSDictionary *feed = _feeds.feeds[indexPath.row / 3][@"node"];
     [self presentWebArticle:feed];
 }
 
