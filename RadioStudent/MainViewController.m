@@ -15,12 +15,14 @@
 
 #import "WebArticleController.h"
 
+#define CELL_COUNT 4
 #define TITLE_FONT_SIZE 15
 #define SUBTITLE_FONT_SIZE 14
-#define AUDIO_STREAM_DONE  @"Touch Me!"
-#define AUDIO_STREAM_WAITING @"Buffering..."
-#define AUDIO_STREAM_PLAYING @"Don't touch me!"
-#define AUDIO_STREAM_PAUSED @"Paused!"
+
+#define AUDIO_STREAM_STOPPED_INFO  @"Touch Me!"
+#define AUDIO_STREAM_WAITING_INFO @"Buffering..."
+#define AUDIO_STREAM_PLAYING_INFO @"Don't touch me!"
+#define AUDIO_STREAM_PAUSED_INFO @"Paused!"
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -63,7 +65,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
-    self.statusInfo = AUDIO_STREAM_DONE;
+    self.statusInfo = AUDIO_STREAM_STOPPED_INFO;
     self.orientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
 }
 
@@ -75,8 +77,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(feedsLoadedNotif:) name:RS_FEEDS_LOADED_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageLoadedNotif:) name:RS_IMAGE_LOADED_NOTIF object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerErrorNotif:) name:AUDIO_STREAMER_ERROR_NOTIF object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerPlayingNotif:) name:AUDIO_STREAMER_PLAYING_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerStatusChangedNotif:) name:ASStatusChangedNotification object:nil];
 }
 
@@ -150,19 +150,18 @@
 - (void)audioStreamerStatusChangedNotif:(NSNotification *)notif {
     AudioStreamer *as = notif.object;
     if(as.isDone) {
-        self.statusInfo = AUDIO_STREAM_DONE;
+        if(as.errorCode != AS_NO_ERROR) {
+            self.statusInfo = [NSString stringWithFormat:@"[%@]", [AudioStreamer stringForErrorCode:as.errorCode]];
+        } else {
+            self.statusInfo = AUDIO_STREAM_STOPPED_INFO;
+        }
     } else if(as.isPaused) {
-        self.statusInfo = AUDIO_STREAM_PAUSED;
+        self.statusInfo = AUDIO_STREAM_PAUSED_INFO;
     } else if(as.isWaiting) {
-        self.statusInfo = AUDIO_STREAM_WAITING;
+        self.statusInfo = AUDIO_STREAM_WAITING_INFO;
     } else if(as.isPlaying) {
-        self.statusInfo = AUDIO_STREAM_PLAYING;
+        self.statusInfo = AUDIO_STREAM_PLAYING_INFO;
     }
-    [self updateUi];
-}
-
-- (void)audioStreamerErrorNotif:(NSNotification *)notif {
-    self.error = notif.userInfo[@"info"];
     [self updateUi];
 }
 
@@ -198,7 +197,7 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _feeds.feeds.count * 3; // image & feed cells
+    return _feeds.feeds.count * CELL_COUNT; // image & feed cells
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind
@@ -227,11 +226,11 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger _feedIndex = indexPath.row / 3;
+    NSInteger _feedIndex = indexPath.row / 4;
     
     NSDictionary *feed = _feeds.feeds[_feedIndex][@"node"];
-    if((indexPath.row % 3) == 0) {
-        // 0, 3, ... title
+    if((indexPath.row % CELL_COUNT) == 0) {
+        // title
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TitleCell" forIndexPath:indexPath];
         
         UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
@@ -244,8 +243,8 @@
         }
         return cell;
     }
-    if((indexPath.row % 3) == 1) {
-        // 1, 4, ... icons
+    if((indexPath.row % CELL_COUNT) == 1) {
+        // icon
         NSString *key = feed[@"mb_image"];
         RSImage *icon = _feeds.icons[key];
         
@@ -258,22 +257,25 @@
         return cell;
     }
     
-    // 2, 5, ... subtitles
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SubtitleCell" forIndexPath:indexPath];
-    
-    UITextView *subtitleView = (UITextView *)[cell viewWithTag:1];
-    subtitleView.text = feed[@"mb_subtitle"];
-   
-    subtitleView.editable = TRUE;
-    if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE * 1.2];
-    } else {
-        subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE];
+    if((indexPath.row % CELL_COUNT) == 2) {
+        // subtitles
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SubtitleCell" forIndexPath:indexPath];
+        
+        UITextView *subtitleView = (UITextView *)[cell viewWithTag:1];
+        subtitleView.text = feed[@"mb_subtitle"];
+        
+        subtitleView.editable = TRUE;
+        if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+            subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE * 1.2];
+        } else {
+            subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE];
+        }
+        subtitleView.editable = FALSE;
+        return cell;
+        
     }
-    subtitleView.editable = FALSE;
     
-    return cell;
-    
+    return [collectionView dequeueReusableCellWithReuseIdentifier:@"FeedFooter" forIndexPath:indexPath];
 }
 
 
@@ -285,30 +287,41 @@
     CGFloat w = [[self class] totalContentWidth:collectionView layout:collectionViewLayout cellCount:2];
     
     if(UIDeviceOrientationIsPortrait(_orientation)) {
-        if((indexPath.row % 3) == 0) {
-            return CGSizeMake(w, 50); // title size
+        if((indexPath.row % CELL_COUNT) == 0) {
+            return CGSizeMake(w, 40); // title size
         }
-        if((indexPath.row % 3) == 1) {
+        
+        if((indexPath.row % CELL_COUNT) == 1) {
             return CGSizeMake(90, 80); // image size
         }
-        return CGSizeMake(w - 90, 80); // subtitle size
+        
+        if((indexPath.row % CELL_COUNT) == 2) {
+            return CGSizeMake(w - 90, 80); // subtitle size
+        }
+        
+        return CGSizeMake(w, 40); // footer size
     }
     
     // landscape
     
-    if((indexPath.row % 3) == 0) {
-        return CGSizeMake(w, 50); // title size
+    if((indexPath.row % CELL_COUNT) == 0) {
+        return CGSizeMake(w, 40); // title size
     }
     
-    if((indexPath.row % 3) == 1) {
+    if((indexPath.row % CELL_COUNT) == 1) {
         return CGSizeMake(130, 90); // image size
     }
     
-    return CGSizeMake(w - 130, 90); // subtitle size
+    if((indexPath.row % CELL_COUNT) == 2) {
+        return CGSizeMake(w - 130, 90); // subtitle size
+    }
+    
+    return CGSizeMake(w, 40); // footer size
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *feed = _feeds.feeds[indexPath.row / 3][@"node"];
+    NSDictionary *feed = _feeds.feeds[indexPath.row / CELL_COUNT][@"node"];
     [self presentWebArticle:feed];
 }
 
@@ -321,7 +334,7 @@
 
 - (NSString *)statusText {
     if(_error) {
-        return [NSString stringWithFormat:@"%@ [%@]", _statusInfo, _error];
+        return [NSString stringWithFormat:@"[%@]", _error];
     }
     return [NSString stringWithFormat:@"%@", _statusInfo];
 }

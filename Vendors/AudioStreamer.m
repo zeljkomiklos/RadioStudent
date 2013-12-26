@@ -294,7 +294,6 @@ static void ASReadStreamCallBack(CFReadStreamRef aStream, CFStreamEventType even
         return NO;
     }
     [self setState:AS_PLAYING];
-    [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_STREAMER_PLAYING_NOTIF object:nil];
     return YES;
 }
 
@@ -479,17 +478,17 @@ static void ASReadStreamCallBack(CFReadStreamRef aStream, CFStreamEventType even
     [self progress:&lastProgress];
     
     NSString *errorLabel = [AudioStreamer stringForErrorCode:anErrorCode];
-    LOG(@"got an error: %@", errorLabel);
+    
+    NSLog(@"Failed with error %d: %@", anErrorCode, errorLabel);
+    
     errorCode = anErrorCode;
     
     [self stop];
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_STREAMER_ERROR_NOTIF object:nil userInfo:@{@"info": errorLabel}];
-    });
 }
 
 - (void)setState:(AudioStreamerState)aStatus {
+    assert([NSThread currentThread] == [NSThread mainThread]);
+
     LOG(@"transitioning to state:%d", aStatus);
     
     if (state_ == aStatus) return;
@@ -1277,7 +1276,6 @@ static void ASReadStreamCallBack(CFReadStreamRef aStream, CFStreamEventType even
     
     if (state_ == AS_WAITING_FOR_QUEUE_TO_START) {
         [self setState:AS_PLAYING];
-        [[NSNotificationCenter defaultCenter] postNotificationName:AUDIO_STREAMER_PLAYING_NOTIF object:nil];
     } else {
         UInt32 running;
         UInt32 output = sizeof(running);
