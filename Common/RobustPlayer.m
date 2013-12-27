@@ -27,14 +27,16 @@
 @property (nonatomic) int restartAttemtp;
 
 @property (weak, nonatomic) NSTimer *scheduledRestartAttempt;
+
 @property (strong, nonatomic) NSURL *url;
 @property (strong, nonatomic) RobustHttpStreamer *streamer;
 @property (strong, nonatomic) Reachability *wwanReachability;
 @property (strong, nonatomic) Reachability *wifiReachability;
 
-
-
 @end
+
+
+NSString * const RPScheduledRestartAttemptChangedNotification = @"RPScheduledRestartAttemptChanged";
 
 @implementation RobustPlayer
 
@@ -126,6 +128,7 @@
 - (BOOL)start {
     if(_streamer != nil) {
         [self stop];
+        return FALSE;
     }
     
     self.streamer = [RobustHttpStreamer streamWithURL:_url];
@@ -140,6 +143,10 @@
     [_streamer stop];
     
     self.streamer = nil;
+}
+
+- (BOOL)shouldStopBeforeStart {
+    return _streamer != nil;
 }
 
 
@@ -197,7 +204,10 @@
                                                                       selector:@selector(restart)
                                                                       userInfo:nil
                                                                        repeats:NO];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRestartAttemptChangedNotification object:nil];
     }
+    
 }
 
 
@@ -227,11 +237,14 @@
                                                                          selector:@selector(restart)
                                                                          userInfo:nil
                                                                           repeats:NO];
-        }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRestartAttemptChangedNotification object:nil];
+  }
     } else if(as.isPlaying) {
         [self clearRestartAttempts];
         self.started = TRUE;
     }
+    
 }
 
 
@@ -242,6 +255,8 @@
     if(_scheduledRestartAttempt != nil) {
         [_scheduledRestartAttempt invalidate];
         _scheduledRestartAttempt = nil;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRestartAttemptChangedNotification object:nil];
     }
 }
 

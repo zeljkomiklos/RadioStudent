@@ -8,9 +8,14 @@
 
 #import "AudioStreamer.h"
 
+
+extern NSString * const RPScheduledRestartAttemptChangedNotification;
+
 @interface RobustPlayer : NSObject
 
 @property (readonly) BOOL isPlaying;
+@property (readonly) BOOL shouldStopBeforeStart;
+@property (readonly, nonatomic) NSTimer *scheduledRestartAttempt;
 
 + (RobustPlayer *)playerWithURL:(NSURL *)url;
 

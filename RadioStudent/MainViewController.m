@@ -26,6 +26,7 @@
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (nonatomic) BOOL attemptingRestartPlayer;
 @property (strong, nonatomic) RobustPlayer *player;
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
@@ -78,6 +79,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(feedsLoadedNotif:) name:RS_FEEDS_LOADED_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageLoadedNotif:) name:RS_IMAGE_LOADED_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerStatusChangedNotif:) name:ASStatusChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scheduledRestartAttemptChangedNotif:) name:RPScheduledRestartAttemptChangedNotification object:nil];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -117,12 +120,17 @@
 
 - (IBAction)playStopAction:(id)sender {
     self.error = nil;
-    if(_player.isPlaying) {
+    self.attemptingRestartPlayer = FALSE;
+    
+    if(_player.shouldStopBeforeStart) {
         [_player stop];
-    } else {
-        [_feeds fetch];
-        [_player start];
+        
+        return;
     }
+    
+    [_feeds fetch];
+    [_player start];
+    
 }
 
 
@@ -147,6 +155,9 @@
     [self updateUi];
 }
 
+
+#pragma mark - AudioStreamer
+
 - (void)audioStreamerStatusChangedNotif:(NSNotification *)notif {
     AudioStreamer *as = notif.object;
     if(as.isDone) {
@@ -162,6 +173,13 @@
     } else if(as.isPlaying) {
         self.statusInfo = AUDIO_STREAM_PLAYING_INFO;
     }
+    [self updateUi];
+}
+
+
+#pragma mark - Player
+
+- (void)scheduledRestartAttemptChangedNotif:(NSNotification *)notif {
     [self updateUi];
 }
 
@@ -219,7 +237,11 @@
     if(_player.isPlaying) {
         bgView.backgroundColor = [UIColor orangeColor];
     } else {
-        bgView.backgroundColor = [UIColor clearColor];
+        if(_player.scheduledRestartAttempt) {
+            bgView.backgroundColor = [UIColor greenColor];
+        } else {
+            bgView.backgroundColor = [UIColor clearColor];
+        }
     }
     
     return view;
