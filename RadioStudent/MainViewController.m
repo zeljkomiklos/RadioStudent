@@ -9,7 +9,7 @@
 #import "MainViewController.h"
 #import "Constants.h"
 #import "AudioStreamer.h"
-#import "RSPlayer.h"
+#import "RobustPlayer.h"
 #import "RSFeeds.h"
 #import "RSImage.h"
 
@@ -26,7 +26,7 @@
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (strong, nonatomic) RSPlayer *player;
+@property (strong, nonatomic) RobustPlayer *player;
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
 @property (strong, nonatomic) NSString *statusInfo;
@@ -57,7 +57,7 @@
 {
     [super viewDidLoad];
     
-    self.player = [RSPlayer playerWithURL:[NSURL URLWithString:RS_LIVE_STREAM_URL]];
+    self.player = [RobustPlayer playerWithURL:[NSURL URLWithString:RS_LIVE_STREAM_URL]];
     self.feeds = [RSFeeds feedsWithURL:[NSURL URLWithString:RS_FEEDS_URL]];
     
     [_player wakeUp];

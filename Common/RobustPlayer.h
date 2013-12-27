@@ -8,11 +8,11 @@
 
 #import "AudioStreamer.h"
 
-@interface RSPlayer : NSObject
+@interface RobustPlayer : NSObject
 
 @property (readonly) BOOL isPlaying;
 
-+ (RSPlayer *)playerWithURL:(NSURL *)url;
++ (RobustPlayer *)playerWithURL:(NSURL *)url;
 
 - (void)wakeUp;
 - (void)tearDown;

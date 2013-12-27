@@ -8,15 +8,15 @@
 
 @import AVFoundation;
 
-#import "RSStreamer.h"
+#import "RobustHttpStreamer.h"
 #import "Constants.h"
 #import "Version.h"
 
-#define RSDefaultNumAQBufs 32
+#define RSDefaultNumAQBufs 128
 #define RSDefaultAQDefaultBufSize 4096
 
 
-@interface RSStreamer ()
+@interface RobustHttpStreamer ()
 
 @property (nonatomic) BOOL pausedByInterruption;
 @property (strong, nonatomic) Version *version;
@@ -24,13 +24,13 @@
 @end
 
 
-@implementation RSStreamer
+@implementation RobustHttpStreamer
 
 #pragma mark - Lifecyle
 
-+ (RSStreamer *)streamWithURL:(NSURL *)url {
++ (RobustHttpStreamer *)streamWithURL:(NSURL *)url {
     assert(url != nil);
-    RSStreamer *stream = [[RSStreamer alloc] init];
+    RobustHttpStreamer *stream = [[RobustHttpStreamer alloc] init];
     stream->url = url;
     stream->bufferCnt = RSDefaultNumAQBufs;
     stream->bufferSize = RSDefaultAQDefaultBufSize;
@@ -49,6 +49,13 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - State
+
+- (AudioStreamerState)state {
+    return state_;
 }
 
 

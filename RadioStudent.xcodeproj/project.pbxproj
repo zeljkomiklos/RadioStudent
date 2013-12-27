@@ -30,8 +30,8 @@
 		1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4A26B18687E3500B46C9C /* WebArticleController.m */; };
 		1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */; };
 		1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F21864ED0000FD2CB9 /* Reachability.m */; };
-		1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F51864ED1300FD2CB9 /* RSStreamer.m */; };
-		1CE387FA1864ED1300FD2CB9 /* RSPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F61864ED1300FD2CB9 /* RSPlayer.m */; };
+		1CE387F91864ED1300FD2CB9 /* RobustHttpStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F51864ED1300FD2CB9 /* RobustHttpStreamer.m */; };
+		1CE387FA1864ED1300FD2CB9 /* RobustPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F61864ED1300FD2CB9 /* RobustPlayer.m */; };
 		1CFC32E01865D06400300F25 /* RSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFC32DF1865D06400300F25 /* RSImage.m */; };
 /* End PBXBuildFile section */
 
@@ -81,10 +81,10 @@
 		1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = Vendors/AudioStreamer.m; sourceTree = "<group>"; };
 		1CE387F11864ED0000FD2CB9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Vendors/Reachability.h; sourceTree = "<group>"; };
 		1CE387F21864ED0000FD2CB9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Vendors/Reachability.m; sourceTree = "<group>"; };
-		1CE387F51864ED1300FD2CB9 /* RSStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSStreamer.m; path = Common/RSStreamer.m; sourceTree = "<group>"; };
-		1CE387F61864ED1300FD2CB9 /* RSPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSPlayer.m; path = Common/RSPlayer.m; sourceTree = "<group>"; };
-		1CE387F71864ED1300FD2CB9 /* RSStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSStreamer.h; path = Common/RSStreamer.h; sourceTree = "<group>"; };
-		1CE387F81864ED1300FD2CB9 /* RSPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSPlayer.h; path = Common/RSPlayer.h; sourceTree = "<group>"; };
+		1CE387F51864ED1300FD2CB9 /* RobustHttpStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RobustHttpStreamer.m; path = Common/RobustHttpStreamer.m; sourceTree = "<group>"; };
+		1CE387F61864ED1300FD2CB9 /* RobustPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RobustPlayer.m; path = Common/RobustPlayer.m; sourceTree = "<group>"; };
+		1CE387F71864ED1300FD2CB9 /* RobustHttpStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RobustHttpStreamer.h; path = Common/RobustHttpStreamer.h; sourceTree = "<group>"; };
+		1CE387F81864ED1300FD2CB9 /* RobustPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RobustPlayer.h; path = Common/RobustPlayer.h; sourceTree = "<group>"; };
 		1CFC32DE1865D06400300F25 /* RSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImage.h; sourceTree = "<group>"; };
 		1CFC32DF1865D06400300F25 /* RSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,10 +214,10 @@
 		1CE387EE1864ECE700FD2CB9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1CE387F71864ED1300FD2CB9 /* RSStreamer.h */,
-				1CE387F51864ED1300FD2CB9 /* RSStreamer.m */,
-				1CE387F81864ED1300FD2CB9 /* RSPlayer.h */,
-				1CE387F61864ED1300FD2CB9 /* RSPlayer.m */,
+				1CE387F71864ED1300FD2CB9 /* RobustHttpStreamer.h */,
+				1CE387F51864ED1300FD2CB9 /* RobustHttpStreamer.m */,
+				1CE387F81864ED1300FD2CB9 /* RobustPlayer.h */,
+				1CE387F61864ED1300FD2CB9 /* RobustPlayer.m */,
 				1CB196771865907D00CA4475 /* RSFeeds.h */,
 				1CB196781865907D00CA4475 /* RSFeeds.m */,
 				1CFC32DE1865D06400300F25 /* RSImage.h */,
@@ -337,13 +337,13 @@
 				1CB1967C1865948D00CA4475 /* Version.m in Sources */,
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
-				1CE387FA1864ED1300FD2CB9 /* RSPlayer.m in Sources */,
+				1CE387FA1864ED1300FD2CB9 /* RobustPlayer.m in Sources */,
 				1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */,
 				1CFC32E01865D06400300F25 /* RSImage.m in Sources */,
 				1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */,
 				1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */,
 				1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */,
-				1CE387F91864ED1300FD2CB9 /* RSStreamer.m in Sources */,
+				1CE387F91864ED1300FD2CB9 /* RobustHttpStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,16 @@
 //  Copyright (c) 2013 Zavod Radio Študent Ljubljana. All rights reserved.
 //
 
-#import "RSPlayer.h"
-#import "RSStreamer.h"
+#import "RobustPlayer.h"
+#import "RobustHttpStreamer.h"
 #import "Reachability.h"
 #import "Constants.h"
 
 
-#define MAX_RESTART_ATTEMPTS 4
-#define INITIAL_REDELIVERY_SECS 4
+#define MAX_RESTART_ATTEMPTS 5
+#define INITIAL_REDELIVERY_SECS 5
 
-@interface RSPlayer ()
+@interface RobustPlayer ()
 {
     UIBackgroundTaskIdentifier _bgTask;
     
@@ -28,7 +28,7 @@
 
 @property (weak, nonatomic) NSTimer *scheduledRestartAttempt;
 @property (strong, nonatomic) NSURL *url;
-@property (strong, nonatomic) RSStreamer *streamer;
+@property (strong, nonatomic) RobustHttpStreamer *streamer;
 @property (strong, nonatomic) Reachability *wwanReachability;
 @property (strong, nonatomic) Reachability *wifiReachability;
 
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation RSPlayer
+@implementation RobustPlayer
 
 #pragma mark - Lifecycle
 
@@ -50,8 +50,8 @@
     return self;
 }
 
-+ (RSPlayer *)playerWithURL:(NSURL *)url {
-    return [[RSPlayer alloc] initWithURL:url];
++ (RobustPlayer *)playerWithURL:(NSURL *)url {
+    return [[RobustPlayer alloc] initWithURL:url];
 }
 
 
@@ -101,13 +101,23 @@
 
 - (BOOL)restart {
     if(_started) {
+
         if(_streamer.isPlaying) {
             return TRUE;
         }
+        
         _restartAttemtp++;
         if(_restartAttemtp <= MAX_RESTART_ATTEMPTS) {
             NSLog(@"Restart attempt: %d! [%@]", _restartAttemtp, _url);
-            return [self start];
+            
+            if(_streamer != nil) {
+                [_streamer stop];
+                self.streamer = nil;
+            }
+
+            self.streamer = [RobustHttpStreamer streamWithURL:_url];
+            
+            return [_streamer start];
         }
     }
     return FALSE;
@@ -118,20 +128,18 @@
         [self stop];
     }
     
-    self.streamer = [RSStreamer streamWithURL:_url];
+    self.streamer = [RobustHttpStreamer streamWithURL:_url];
     
     return [_streamer start];
 }
 
 - (void)stop {
-    [_streamer stop];
-    
     [self clearRestartAttempts];
     
     self.started = FALSE;
+    [_streamer stop];
     
     self.streamer = nil;
-    
 }
 
 
@@ -173,17 +181,22 @@
         
         int secs =  (1 << _restartAttemtp) * INITIAL_REDELIVERY_SECS;
         
-        if(!_scheduledRestartAttempt) {
+        if(_scheduledRestartAttempt) {
 #ifdef DEBUG
-            NSLog(@"RSPlayer: retry connection in %d secs!", secs);
+            NSLog(@"RSPlayer: invalidating scheduled restart attempt!");
 #endif
-            
-            self.scheduledRestartAttempt = [NSTimer scheduledTimerWithTimeInterval:secs
-                                                                            target:self
-                                                                          selector:@selector(restart)
-                                                                          userInfo:nil
-                                                                           repeats:NO];
+            [_scheduledRestartAttempt invalidate];
         }
+        
+#ifdef DEBUG
+        NSLog(@"RSPlayer: retry connection in %d secs!", secs);
+#endif
+        
+        self.scheduledRestartAttempt = [NSTimer scheduledTimerWithTimeInterval:secs
+                                                                        target:self
+                                                                      selector:@selector(restart)
+                                                                      userInfo:nil
+                                                                       repeats:NO];
     }
 }
 
@@ -191,22 +204,29 @@
 #pragma mark - AudioStreamer
 
 - (void)audioStreamerStatusChangedNotif:(NSNotification *)notif {
-    AudioStreamer *as = notif.object;
+    RobustHttpStreamer *as = notif.object;
     if(as.isDone) {
         if(_started && !_disconnected && _restartAttemtp < MAX_RESTART_ATTEMPTS) {
             int secs =  (1 << _restartAttemtp) * INITIAL_REDELIVERY_SECS;
-            if(!_scheduledRestartAttempt) {
-                
+            
+            if(_scheduledRestartAttempt) {
 #ifdef DEBUG
-                NSLog(@"RSPlayer: restart player in %d secs!", secs);
+                NSLog(@"RSPlayer: invalidating scheduled restart attempt!");
 #endif
-                
-                self.scheduledRestartAttempt =[NSTimer scheduledTimerWithTimeInterval:secs
-                                                                               target:self
-                                                                             selector:@selector(restart)
-                                                                             userInfo:nil
-                                                                              repeats:NO];
+                [_scheduledRestartAttempt invalidate];
             }
+            
+#ifdef DEBUG
+            NSLog(@"RSPlayer: [AudioStreamer.status=%d]", as.state);
+            NSLog(@"RSPlayer: [AudioStreamer.error=%@]", [AudioStreamer stringForErrorCode:as.errorCode]);
+            NSLog(@"RSPlayer: restart player in %d secs!", secs);
+#endif
+            
+            self.scheduledRestartAttempt =[NSTimer scheduledTimerWithTimeInterval:secs
+                                                                           target:self
+                                                                         selector:@selector(restart)
+                                                                         userInfo:nil
+                                                                          repeats:NO];
         }
     } else if(as.isPlaying) {
         [self clearRestartAttempts];

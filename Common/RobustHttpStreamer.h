@@ -8,12 +8,15 @@
 
 #import "AudioStreamer.h"
 
-@interface RSStreamer : AudioStreamer
+@interface RobustHttpStreamer : AudioStreamer
 
 @property (readonly) BOOL pausedByInterruption;
+@property (readonly) AudioStreamerState state;
 
-+ (RSStreamer *)streamWithURL:(NSURL *)url;
++ (RobustHttpStreamer *)streamWithURL:(NSURL *)url;
 
 - (BOOL)togglePlayPause;
+
+
 
 @end
