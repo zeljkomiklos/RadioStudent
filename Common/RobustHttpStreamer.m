@@ -63,7 +63,7 @@
 
 - (BOOL)start {
 #ifdef DEBUG
-    NSLog(@"RSStreamer: start");
+    NSLog(@"RobustHttpStreamer: start");
 #endif
 
     if(![super start]) {
@@ -93,7 +93,7 @@
 
 - (void)stop {
 #ifdef DEBUG
-    NSLog(@"RSStreamer: stop");
+    NSLog(@"RobustHttpStreamer: stop");
 #endif
     
     [super stop];
@@ -123,14 +123,14 @@
 
 - (BOOL)play {
 #ifdef DEBUG
-    NSLog(@"RSStreamer: play");
+    NSLog(@"RobustHttpStreamer: play");
 #endif
     return [super play];
 }
 
 - (BOOL)pause {
 #ifdef DEBUG
-    NSLog(@"RSStreamer: pause");
+    NSLog(@"RobustHttpStreamer: pause");
 #endif
     return [super pause];
 }
@@ -145,7 +145,7 @@
         switch (option) {
             case AVAudioSessionInterruptionTypeEnded: // actually - AVAudioSessionInterruptionTypeBegan
 #ifdef DEBUG
-                NSLog(@"RSStreamer: interruption began");
+                NSLog(@"RobustHttpStreamer: interruption began");
 #endif
                 if ([self isPlaying]) {
                     [self pause];
@@ -155,7 +155,7 @@
                 break;
             case AVAudioSessionInterruptionTypeBegan: // actually - AVAudioSessionInterruptionTypeEnded
 #ifdef DEBUG
-                NSLog(@"RSStreamer: interruption ended");
+                NSLog(@"RobustHttpStreamer: interruption ended");
 #endif
                 if ([self isPaused] && _pausedByInterruption) {
                     [self play];
@@ -170,7 +170,7 @@
         switch (option) {
             case AVAudioSessionInterruptionTypeBegan:
 #ifdef DEBUG
-                NSLog(@"RSStreamer: interruption began");
+                NSLog(@"RobustHttpStreamer: interruption began");
 #endif
                 if ([self isPlaying]) {
                     [self pause];
@@ -180,7 +180,7 @@
                 break;
             case AVAudioSessionInterruptionTypeEnded:
 #ifdef DEBUG
-                NSLog(@"RSStreamer: interruption ended");
+                NSLog(@"RobustHttpStreamer: interruption ended");
 #endif
                 if ([self isPaused] && _pausedByInterruption) {
                     [self play];

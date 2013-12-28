@@ -8,8 +8,8 @@
 
 #import "MainViewController.h"
 #import "Constants.h"
-#import "AudioStreamer.h"
 #import "RobustPlayer.h"
+#import "RobustHttpStreamer.h"
 #import "RSFeeds.h"
 #import "RSImage.h"
 
@@ -19,6 +19,7 @@
 #define TITLE_FONT_SIZE 15
 #define SUBTITLE_FONT_SIZE 14
 
+#define PLAYER_SCHEDULED_RETRY_INFO @"Retrying..."
 #define AUDIO_STREAM_STOPPED_INFO  @"Touch Me!"
 #define AUDIO_STREAM_WAITING_INFO @"Buffering..."
 #define AUDIO_STREAM_PLAYING_INFO @"Don't touch me!"
@@ -30,9 +31,10 @@
 @property (strong, nonatomic) RobustPlayer *player;
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
-@property (strong, nonatomic) NSString *statusInfo;
 @property (strong, nonatomic) NSDictionary *presentingFeed;
 @property (nonatomic) UIInterfaceOrientation orientation;
+
+@property (readonly, nonatomic) NSString *statusInfo;
 
 @end
 
@@ -66,7 +68,6 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
-    self.statusInfo = AUDIO_STREAM_STOPPED_INFO;
     self.orientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
 }
 
@@ -79,7 +80,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(feedsLoadedNotif:) name:RS_FEEDS_LOADED_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageLoadedNotif:) name:RS_IMAGE_LOADED_NOTIF object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerStatusChangedNotif:) name:ASStatusChangedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scheduledRestartAttemptChangedNotif:) name:RPScheduledRestartAttemptChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scheduledRetryAttemptChangedNotif:) name:RPScheduledRetryAttemptChangedNotification object:nil];
     
 }
 
@@ -119,7 +120,6 @@
 #pragma mark - Bindings
 
 - (IBAction)playStopAction:(id)sender {
-    self.error = nil;
     self.attemptingRestartPlayer = FALSE;
     
     if(_player.shouldStopBeforeStart) {
@@ -150,36 +150,17 @@
     [self updateUi];
 }
 
-- (void)audioStreamerPlayingNotif:(NSNotification *)notif {
-    self.error = nil;
-    [self updateUi];
-}
-
 
 #pragma mark - AudioStreamer
 
 - (void)audioStreamerStatusChangedNotif:(NSNotification *)notif {
-    AudioStreamer *as = notif.object;
-    if(as.isDone) {
-        if(as.errorCode != AS_NO_ERROR) {
-            self.statusInfo = [NSString stringWithFormat:@"[%@]", [AudioStreamer stringForErrorCode:as.errorCode]];
-        } else {
-            self.statusInfo = AUDIO_STREAM_STOPPED_INFO;
-        }
-    } else if(as.isPaused) {
-        self.statusInfo = AUDIO_STREAM_PAUSED_INFO;
-    } else if(as.isWaiting) {
-        self.statusInfo = AUDIO_STREAM_WAITING_INFO;
-    } else if(as.isPlaying) {
-        self.statusInfo = AUDIO_STREAM_PLAYING_INFO;
-    }
     [self updateUi];
 }
 
 
 #pragma mark - Player
 
-- (void)scheduledRestartAttemptChangedNotif:(NSNotification *)notif {
+- (void)scheduledRetryAttemptChangedNotif:(NSNotification *)notif {
     [self updateUi];
 }
 
@@ -228,7 +209,7 @@
                                                                         withReuseIdentifier:@"NavigationView" forIndexPath:indexPath];
     
     UILabel *statusLabel = (UILabel *)[view viewWithTag:1];
-    statusLabel.text = [self statusText];
+    statusLabel.text = self.statusInfo;
     
     UIButton *playButton = (UIButton *)[view viewWithTag:2];
     [playButton addTarget:self action:@selector(playStopAction:) forControlEvents:UIControlEventTouchDown];
@@ -237,7 +218,7 @@
     if(_player.isPlaying) {
         bgView.backgroundColor = [UIColor orangeColor];
     } else {
-        if(_player.scheduledRestartAttempt) {
+        if(_player.scheduledRetryAttempt) {
             bgView.backgroundColor = [UIColor greenColor];
         } else {
             bgView.backgroundColor = [UIColor clearColor];
@@ -350,15 +331,38 @@
 
 #pragma mark - Private
 
-- (void)updateUi {
-    [_collectionView reloadData];
+- (NSString *)statusInfo {
+    RobustHttpStreamer *streamer = _player.streamer;
+    
+    if(_player.scheduledRetryAttempt) {
+        return PLAYER_SCHEDULED_RETRY_INFO;
+    }
+    
+    if(streamer.isDone) {
+        if(streamer.errorCode != AS_NO_ERROR) {
+            return [NSString stringWithFormat:@"[%@]", [AudioStreamer stringForErrorCode:streamer.errorCode]];
+        }
+        
+        return AUDIO_STREAM_STOPPED_INFO;
+    }
+    
+    if(streamer.isPaused) {
+       return AUDIO_STREAM_PAUSED_INFO;
+    }
+    
+    if(streamer.isWaiting) {
+        return AUDIO_STREAM_WAITING_INFO;
+    }
+    
+    if(streamer.isPlaying) {
+        return  AUDIO_STREAM_PLAYING_INFO;
+    }
+    
+    return AUDIO_STREAM_STOPPED_INFO;
 }
 
-- (NSString *)statusText {
-    if(_error) {
-        return [NSString stringWithFormat:@"[%@]", _error];
-    }
-    return [NSString stringWithFormat:@"%@", _statusInfo];
+- (void)updateUi {
+    [_collectionView reloadData];
 }
 
 
