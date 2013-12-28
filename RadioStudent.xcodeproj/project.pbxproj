@@ -23,6 +23,7 @@
 		1C28C9F1186093CB00CB726C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9EF186093CB00CB726C /* InfoPlist.strings */; };
 		1C28C9F3186093CB00CB726C /* RadioStudentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9F2186093CB00CB726C /* RadioStudentTests.m */; };
 		1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8951581869B67C00C4F3FF /* ArticleController.m */; };
+		1C991BBB186F135B00A7A9AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */; };
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
 		1CB196791865907D00CA4475 /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB196781865907D00CA4475 /* RSFeeds.m */; };
@@ -69,6 +70,31 @@
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
 		1C8951571869B67C00C4F3FF /* ArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleController.h; sourceTree = "<group>"; };
 		1C8951581869B67C00C4F3FF /* ArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleController.m; sourceTree = "<group>"; };
+		1C991BA8186F0DBA00A7A9AF /* rs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rs.png; sourceTree = "<group>"; };
+		1C991BA9186F0DBA00A7A9AF /* RS1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS1024.png; sourceTree = "<group>"; };
+		1C991BAA186F0DBA00A7A9AF /* RS120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS120.png; sourceTree = "<group>"; };
+		1C991BAB186F0DBA00A7A9AF /* RS152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS152.png; sourceTree = "<group>"; };
+		1C991BAC186F0DBA00A7A9AF /* RS29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS29.png; sourceTree = "<group>"; };
+		1C991BAD186F0DBA00A7A9AF /* RS40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS40.png; sourceTree = "<group>"; };
+		1C991BAE186F0DBA00A7A9AF /* RS58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS58.png; sourceTree = "<group>"; };
+		1C991BAF186F0DBA00A7A9AF /* RS60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS60.png; sourceTree = "<group>"; };
+		1C991BB0186F0DBA00A7A9AF /* RS76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS76.png; sourceTree = "<group>"; };
+		1C991BB1186F0DBA00A7A9AF /* RS80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RS80.png; sourceTree = "<group>"; };
+		1C991BB2186F0DBA00A7A9AF /* RSL1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSL1024x768.png; sourceTree = "<group>"; };
+		1C991BB3186F0DBA00A7A9AF /* RSL1024x768.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL1024x768.psd; sourceTree = "<group>"; };
+		1C991BB4186F0DBA00A7A9AF /* RSL640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSL640x1136.png; sourceTree = "<group>"; };
+		1C991BB5186F0DBA00A7A9AF /* RSL640x1136.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL640x1136.psd; sourceTree = "<group>"; };
+		1C991BB6186F0DBA00A7A9AF /* RSL640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSL640x960.png; sourceTree = "<group>"; };
+		1C991BB7186F0DBA00A7A9AF /* RSL640x960.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL640x960.psd; sourceTree = "<group>"; };
+		1C991BB8186F0DBA00A7A9AF /* RSL768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSL768x1024.png; sourceTree = "<group>"; };
+		1C991BB9186F0DBA00A7A9AF /* RSL768x1024.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL768x1024.psd; sourceTree = "<group>"; };
+		1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1C991BC8186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.26.39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.26.39.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.26.39.png"; sourceTree = "<group>"; };
+		1C991BC9186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.25.09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.25.09.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.25.09.png"; sourceTree = "<group>"; };
+		1C991BCA186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.24.56.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.24.56.png"; sourceTree = "<group>"; };
+		1C991BCB186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.24.30.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.24.30.png"; sourceTree = "<group>"; };
+		1C991BCC186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.24.09.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.24.09.png"; sourceTree = "<group>"; };
+		1C991BCD186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.23.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.23.44.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.23.44.png"; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1CB196771865907D00CA4475 /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFeeds.h; sourceTree = "<group>"; };
@@ -131,12 +157,14 @@
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
+				1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */,
 				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1CE387EE1864ECE700FD2CB9 /* Common */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
 				1C1C828118609DCB002E07F0 /* Vendors */,
 				1C28C9C6186093CB00CB726C /* Frameworks */,
 				1C28C9C5186093CB00CB726C /* Products */,
+				1C991BA7186F0DBA00A7A9AF /* Design */,
 				1C1C828F1860A827002E07F0 /* README.md */,
 			);
 			sourceTree = "<group>";
@@ -209,6 +237,37 @@
 				1C28C9EF186093CB00CB726C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C991BA7186F0DBA00A7A9AF /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				1C991BC8186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.26.39.png */,
+				1C991BC9186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.25.09.png */,
+				1C991BCA186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.56.png */,
+				1C991BCB186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.30.png */,
+				1C991BCC186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.09.png */,
+				1C991BCD186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.23.44.png */,
+				1C991BA8186F0DBA00A7A9AF /* rs.png */,
+				1C991BA9186F0DBA00A7A9AF /* RS1024.png */,
+				1C991BAA186F0DBA00A7A9AF /* RS120.png */,
+				1C991BAB186F0DBA00A7A9AF /* RS152.png */,
+				1C991BAC186F0DBA00A7A9AF /* RS29.png */,
+				1C991BAD186F0DBA00A7A9AF /* RS40.png */,
+				1C991BAE186F0DBA00A7A9AF /* RS58.png */,
+				1C991BAF186F0DBA00A7A9AF /* RS60.png */,
+				1C991BB0186F0DBA00A7A9AF /* RS76.png */,
+				1C991BB1186F0DBA00A7A9AF /* RS80.png */,
+				1C991BB2186F0DBA00A7A9AF /* RSL1024x768.png */,
+				1C991BB3186F0DBA00A7A9AF /* RSL1024x768.psd */,
+				1C991BB4186F0DBA00A7A9AF /* RSL640x1136.png */,
+				1C991BB5186F0DBA00A7A9AF /* RSL640x1136.psd */,
+				1C991BB6186F0DBA00A7A9AF /* RSL640x960.png */,
+				1C991BB7186F0DBA00A7A9AF /* RSL640x960.psd */,
+				1C991BB8186F0DBA00A7A9AF /* RSL768x1024.png */,
+				1C991BB9186F0DBA00A7A9AF /* RSL768x1024.psd */,
+			);
+			path = Design;
 			sourceTree = "<group>";
 		};
 		1CE387EE1864ECE700FD2CB9 /* Common */ = {
@@ -313,6 +372,7 @@
 				1C28C9E0186093CB00CB726C /* Images.xcassets in Resources */,
 				1C28C9D2186093CB00CB726C /* InfoPlist.strings in Resources */,
 				1C1C82901860A827002E07F0 /* README.md in Resources */,
+				1C991BBB186F135B00A7A9AF /* Default-568h@2x.png in Resources */,
 				1C1C828618609E7F002E07F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -451,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -470,6 +530,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -479,14 +540,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Resonanca IT d.o.o.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Resonanca IT d.o.o.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RadioStudent/RadioStudent-Prefix.pch";
 				INFOPLIST_FILE = "RadioStudent/RadioStudent-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2D955755-4125-4C37-B926-C88E0C1932C4";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
