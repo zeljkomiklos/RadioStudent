@@ -89,10 +89,13 @@
     
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
 }
 
 

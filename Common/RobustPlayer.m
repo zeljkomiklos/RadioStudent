@@ -102,7 +102,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 
 - (BOOL)retry {
     if(_playing) {
-
+        
         if(_streamer.isPlaying) {
             return TRUE;
         }
@@ -115,7 +115,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
                 [_streamer stop];
                 self.streamer = nil;
             }
-
+            
             self.streamer = [RobustHttpStreamer streamWithURL:_url];
             
             return [_streamer start];
@@ -164,6 +164,14 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
             case UIEventSubtypeRemoteControlTogglePlayPause:
                 [_streamer togglePlayPause];
                 break;
+            case UIEventSubtypeRemoteControlPlay:
+            case UIEventSubtypeRemoteControlNextTrack:
+            case UIEventSubtypeRemoteControlPreviousTrack:
+                [_streamer play];
+                break;
+            case UIEventSubtypeRemoteControlPause:
+                [_streamer pause];
+                break;
             default:
                 break;
         }
@@ -181,7 +189,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     
     if(!connectionAvailable) {
 #ifdef DEBUG
-      NSLog(@"RobustPlayer: network not reachable [%@]!", reach.currentReachabilityString);
+        NSLog(@"RobustPlayer: network not reachable [%@]!", reach.currentReachabilityString);
 #endif
         self.disconnected = TRUE;
     } else {
@@ -207,10 +215,10 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 #endif
         
         self.scheduledRetryAttempt = [NSTimer scheduledTimerWithTimeInterval:secs
-                                                                        target:self
-                                                                      selector:@selector(retry)
-                                                                      userInfo:nil
-                                                                       repeats:NO];
+                                                                      target:self
+                                                                    selector:@selector(retry)
+                                                                    userInfo:nil
+                                                                     repeats:NO];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
     }
@@ -244,13 +252,13 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 #endif
             
             self.scheduledRetryAttempt =[NSTimer scheduledTimerWithTimeInterval:secs
-                                                                           target:self
-                                                                         selector:@selector(retry)
-                                                                         userInfo:nil
-                                                                          repeats:NO];
+                                                                         target:self
+                                                                       selector:@selector(retry)
+                                                                       userInfo:nil
+                                                                        repeats:NO];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
-  }
+        }
     } else if(as.isPlaying) {
         [self clearRestartAttempts];
         self.playing = TRUE;
