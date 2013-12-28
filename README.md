@@ -36,8 +36,6 @@ Feed url: http://radiostudent.si/{nodes.node[i].mb_link} (open URL in WebView - 
 
 
 
-
-
 ## Vendor code
 
 a) https://github.com/alexcrichton/AudioStreamer
@@ -45,3 +43,20 @@ a) https://github.com/alexcrichton/AudioStreamer
 b) https://github.com/tonymillion/Reachability
 
 c) https://github.com/TakahikoKawasaki/nv-ios-version
+
+
+
+## In AppStore
+
+SKU: SI-RADIOSTUDENT-RS
+
+Bundle ID: si.radiostudent.RadioStudent
+
+Apple ID: 784484940
+
+### Release 1.0 features
+
+- play in background
+- remote control events
+- audio session interruption events
+- robust http audio connection with 5 redelivery attempts in 5, 10, 20, 40, 80 and 120 sec.
