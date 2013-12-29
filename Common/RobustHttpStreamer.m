@@ -12,6 +12,13 @@
 #import "Constants.h"
 #import "Version.h"
 
+#if defined(DEBUG)
+#define LOG(fmt, args...) NSLog(@"%s " fmt, __PRETTY_FUNCTION__, ##args)
+#else
+#define LOG(...)
+#endif
+
+
 #define RSDefaultNumAQBufs 128
 #define RSDefaultAQDefaultBufSize 4096
 
@@ -62,10 +69,6 @@
 #pragma mark - Control
 
 - (BOOL)start {
-#ifdef DEBUG
-    NSLog(@"RobustHttpStreamer: start");
-#endif
-
     if(![super start]) {
         return NO;
     }
@@ -80,22 +83,19 @@
         return NO;
     }
     
-    success = [ [AVAudioSession sharedInstance] setActive:YES error:&error];
+    success = [[AVAudioSession sharedInstance] setActive:YES error:&error];
     if (!success) {
         NSLog(@"%@", [error localizedDescription]);
         return NO;
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(interruptionOcurred:) name:AVAudioSessionInterruptionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionInterruptionOccured:)
+                                                 name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
     
     return TRUE;
 }
 
 - (void)stop {
-#ifdef DEBUG
-    NSLog(@"RobustHttpStreamer: stop");
-#endif
-    
     [super stop];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
@@ -122,75 +122,42 @@
 }
 
 - (BOOL)play {
-#ifdef DEBUG
-    NSLog(@"RobustHttpStreamer: play");
-#endif
     return [super play];
 }
 
 - (BOOL)pause {
-#ifdef DEBUG
-    NSLog(@"RobustHttpStreamer: pause");
-#endif
     return [super pause];
 }
 
 
 #pragma mark - AVAudioSessionInterruptionNotification
 
-- (void)interruptionOcurred:(NSNotification *)notif {
-    NSInteger option = [notif.userInfo[AVAudioSessionInterruptionOptionKey] integerValue];
-    if(_version.major == 7 && _version.minor == 0 && _version.micro <= 4) {
-        // iOS [7.0.0 -> 7.0.4] - options mishmash bug
-        switch (option) {
-            case AVAudioSessionInterruptionTypeEnded: // actually - AVAudioSessionInterruptionTypeBegan
-#ifdef DEBUG
-                NSLog(@"RobustHttpStreamer: interruption began");
-#endif
-                if ([self isPlaying]) {
-                    [self pause];
-                    
-                    self.pausedByInterruption = YES;
-                }
-                break;
-            case AVAudioSessionInterruptionTypeBegan: // actually - AVAudioSessionInterruptionTypeEnded
-#ifdef DEBUG
-                NSLog(@"RobustHttpStreamer: interruption ended");
-#endif
-                if ([self isPaused] && _pausedByInterruption) {
-                    [self play];
-                    
-                    self.pausedByInterruption = NO;
-                }
-                break;
-            default:
-                break;
-        }
-    } else {
-        switch (option) {
-            case AVAudioSessionInterruptionTypeBegan:
-#ifdef DEBUG
-                NSLog(@"RobustHttpStreamer: interruption began");
-#endif
-                if ([self isPlaying]) {
-                    [self pause];
-                    
-                    self.pausedByInterruption = YES;
-                }
-                break;
-            case AVAudioSessionInterruptionTypeEnded:
-#ifdef DEBUG
-                NSLog(@"RobustHttpStreamer: interruption ended");
-#endif
-                if ([self isPaused] && _pausedByInterruption) {
-                    [self play];
-                    
-                    self.pausedByInterruption = NO;
-                }
-                break;
-            default:
-                break;
-        }
+- (void)audioSessionInterruptionOccured:(NSNotification *)notif {
+    NSNumber *n = notif.userInfo[AVAudioSessionInterruptionTypeKey];
+    if(n == nil) {
+        return;
+    }
+    
+    NSUInteger type =  n.unsignedIntegerValue;
+    switch (type) {
+        case AVAudioSessionInterruptionTypeBegan:
+            LOG(@"RobustHttpStreamer: interruption began");
+            if ([self isPlaying]) {
+                [self pause];
+                
+                self.pausedByInterruption = YES;
+            }
+            break;
+        case AVAudioSessionInterruptionTypeEnded:
+            LOG(@"RobustHttpStreamer: interruption ended");
+            if ([self isPaused] && _pausedByInterruption) {
+                [self play];
+                
+                self.pausedByInterruption = NO;
+            }
+            break;
+        default:
+            break;
     }
 }
 

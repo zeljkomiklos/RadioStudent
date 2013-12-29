@@ -10,9 +10,6 @@
 
 @interface MainViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIButton *playStopButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
-- (IBAction)playStopAction:(id)sender;
 
 @end

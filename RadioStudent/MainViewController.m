@@ -27,7 +27,7 @@
 
 @interface MainViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic) BOOL attemptingRestartPlayer;
+
 @property (strong, nonatomic) RobustPlayer *player;
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
@@ -45,10 +45,8 @@
 #pragma mark - Lifecycle
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if(self == nil) {
-        return nil;
-    }
+    if((self = [super initWithCoder:aDecoder]) == nil) return nil;
+
     return self;
 }
 
@@ -122,18 +120,9 @@
 
 #pragma mark - Bindings
 
-- (IBAction)playStopAction:(id)sender {
-    self.attemptingRestartPlayer = FALSE;
-    
-    if(_player.shouldStopBeforeStart) {
-        [_player stop];
-        
-        return;
-    }
-    
+- (IBAction)playAction:(id)sender {
     [_feeds fetch];
     [_player start];
-    
 }
 
 
@@ -215,7 +204,7 @@
     statusLabel.text = self.statusInfo;
     
     UIButton *playButton = (UIButton *)[view viewWithTag:2];
-    [playButton addTarget:self action:@selector(playStopAction:) forControlEvents:UIControlEventTouchDown];
+    [playButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchDown];
     
     UIView *bgView = [view viewWithTag:3];
     if(_player.isPlaying) {
