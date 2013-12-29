@@ -28,7 +28,7 @@
 #define SUBTITLE_FONT_SIZE 14
 
 #define PLAYER_SCHEDULED_RETRY_INFO @"Retrying..."
-#define AUDIO_STREAM_STOPPED_INFO  @"Touch Me!"
+#define AUDIO_STREAM_STOPPED_INFO  @"Touch me!"
 #define AUDIO_STREAM_WAITING_INFO @"Buffering..."
 #define AUDIO_STREAM_PLAYING_INFO @"Don't touch me!"
 #define AUDIO_STREAM_PAUSED_INFO @"Paused!"
