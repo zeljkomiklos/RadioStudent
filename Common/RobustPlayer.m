@@ -30,8 +30,9 @@
 }
 
 @property (nonatomic) BOOL disconnected;
-@property (nonatomic) BOOL playing;
+@property (readonly) BOOL shouldStop;
 
+@property (nonatomic) BOOL allowRetryAttempts;
 @property (nonatomic) int retryAttemtp;
 @property (weak, nonatomic) NSTimer *scheduledRetryAttempt;
 
@@ -104,7 +105,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 #pragma mark - Control
 
 - (BOOL)retry {
-    if(_playing) {
+    if(_allowRetryAttempts) {
         if(_streamer.isPlaying) {
             return TRUE;
         }
@@ -136,12 +137,12 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     return FALSE;
 }
 
-- (BOOL)isPlaying {
+- (BOOL)isAllowRetryAttempts {
     return _streamer.isPlaying;
 }
 
 - (BOOL)start {
-    if(self.shouldStopBeforeStart) {
+    if(self.shouldStop) {
         [self stop];
         return FALSE;
     }
@@ -154,14 +155,14 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 - (void)stop {
     [self clearRetryAttempts];
     
-    self.playing = FALSE;
+    self.allowRetryAttempts = FALSE;
     
     [_streamer stop];
     
     self.streamer = nil;
 }
 
-- (BOOL)shouldStopBeforeStart {
+- (BOOL)shouldStop {
     return _streamer != nil && !_streamer.isPaused;
 }
 
@@ -174,15 +175,30 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     if (receivedEvent.type == UIEventTypeRemoteControl) {
         switch (receivedEvent.subtype) {
             case UIEventSubtypeRemoteControlTogglePlayPause:
-                [_streamer togglePlayPause];
+                if(_streamer == nil || _streamer.isDone) {
+                    [self start];
+                    return;
+                }
+                if(![_streamer togglePlayPause]) {
+                    self.allowRetryAttempts = FALSE;
+                }
                 break;
             case UIEventSubtypeRemoteControlPlay:
             case UIEventSubtypeRemoteControlNextTrack:
             case UIEventSubtypeRemoteControlPreviousTrack:
+                if(_streamer == nil || _streamer.isDone) {
+                    [self start];
+                    return;
+                }
                 [_streamer play];
                 break;
             case UIEventSubtypeRemoteControlPause:
+                if(_streamer == nil || _streamer.isDone) {
+                    [self start];
+                    return;
+                }
                 [_streamer pause];
+                self.allowRetryAttempts = FALSE;
                 break;
             default:
                 break;
@@ -199,15 +215,19 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     NetworkStatus netStatus = [reach currentReachabilityStatus];
     BOOL connectionAvailable = (netStatus == ReachableViaWiFi || netStatus == ReachableViaWWAN);
     
+    LOG(@"Network reachability: %@", reach.currentReachabilityString);
+    
     if(!connectionAvailable) {
-        LOG(@"RobustPlayer: network not reachable [%@]!", reach.currentReachabilityString);
         self.disconnected = TRUE;
         return;
     }
     
-    LOG(@"RobustPlayer: network reachable [%@]!", reach.currentReachabilityString);
+    if(_streamer.isPaused) {
+        LOG(@"Paused [#1]");
+        return;
+    }
     
-    if (_playing && _disconnected && connectionAvailable) {
+    if (_allowRetryAttempts && _disconnected && connectionAvailable) {
         self.disconnected = NO;
         
         if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
@@ -215,7 +235,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
             
             [_scheduledRetryAttempt invalidate];
             self.scheduledRetryAttempt = nil;
-
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
             return;
         }
@@ -227,7 +247,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
         
         int secs =  (1 << _retryAttemtp) * INITIAL_REDELIVERY_SECS;
         
-        LOG(@"RobustPlayer: retry connection in %d secs!", secs);
+        LOG(@"Retry connection in %d secs!", secs);
         
         self.scheduledRetryAttempt = [NSTimer scheduledTimerWithTimeInterval:secs
                                                                       target:self
@@ -251,14 +271,14 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     RobustHttpStreamer *as = notif.object;
     
     if(as.isDone) {
-        if(_playing && !_disconnected) {
+        if(_allowRetryAttempts && !_disconnected) {
             
             if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
                 LOG(@"Giveup retrying [#2]: [%@]", _url);
                 
                 [_scheduledRetryAttempt invalidate];
                 self.scheduledRetryAttempt = nil;
-
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
                 return;
             }
@@ -270,7 +290,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
             
             int secs =  (1 << _retryAttemtp) * INITIAL_REDELIVERY_SECS;
             
-            LOG(@"RobustPlayer: retry player in %d secs!", secs);
+            LOG(@"Retry player in %d secs!", secs);
             
             self.scheduledRetryAttempt =[NSTimer scheduledTimerWithTimeInterval:secs
                                                                          target:self
@@ -280,9 +300,12 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
             
             [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
         }
-    } else if(as.isPlaying) {
+        return;
+    }
+    
+    if(as.isPlaying) {
         [self clearRetryAttempts];
-        self.playing = TRUE;
+        self.allowRetryAttempts = TRUE;
     }
 }
 

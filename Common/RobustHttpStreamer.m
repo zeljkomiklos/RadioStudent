@@ -18,7 +18,6 @@
 #define LOG(...)
 #endif
 
-
 #define RSDefaultNumAQBufs 128
 #define RSDefaultAQDefaultBufSize 4096
 
@@ -141,7 +140,7 @@
     NSUInteger type =  n.unsignedIntegerValue;
     switch (type) {
         case AVAudioSessionInterruptionTypeBegan:
-            LOG(@"RobustHttpStreamer: interruption began");
+            LOG(@"Interruption began");
             if ([self isPlaying]) {
                 [self pause];
                 
@@ -149,7 +148,7 @@
             }
             break;
         case AVAudioSessionInterruptionTypeEnded:
-            LOG(@"RobustHttpStreamer: interruption ended");
+            LOG(@"Interruption ended");
             if ([self isPaused] && _pausedByInterruption) {
                 [self play];
                 

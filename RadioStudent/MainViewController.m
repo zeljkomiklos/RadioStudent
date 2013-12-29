@@ -15,6 +15,14 @@
 
 #import "WebArticleController.h"
 
+
+#if defined(DEBUG)
+#define LOG(fmt, args...) NSLog(@"%s " fmt, __PRETTY_FUNCTION__, ##args)
+#else
+#define LOG(...)
+#endif
+
+
 #define CELL_COUNT 4
 #define TITLE_FONT_SIZE 15
 #define SUBTITLE_FONT_SIZE 14
@@ -32,7 +40,6 @@
 @property (strong, nonatomic) RSFeeds *feeds;
 @property (strong, nonatomic) NSString *error;
 @property (strong, nonatomic) NSDictionary *presentingFeed;
-@property (nonatomic) UIInterfaceOrientation orientation;
 
 @property (readonly, nonatomic) NSString *statusInfo;
 
@@ -65,8 +72,6 @@
     
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    
-    self.orientation = (UIInterfaceOrientation)[UIDevice currentDevice].orientation;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,16 +135,12 @@
 #pragma mark - Feeds
 
 - (void)feedsLoadedNotif:(NSNotification *)notif {
-#ifdef DEBUG
-    NSLog(@"Feeds: %@", _feeds.feeds);
-#endif
+    LOG(@"Feeds: %@", _feeds.feeds);
     [self updateUi];
 }
 
 - (void)imageLoadedNotif:(NSNotification *)notif {
-#ifdef DEBUG
-    NSLog(@"Image loaded: %@", notif.userInfo[@"url"]);
-#endif
+    LOG(@"Image loaded: %@", notif.userInfo[@"url"]);
     [self updateUi];
 }
 
@@ -174,7 +175,6 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:orientation duration:duration];
-    self.orientation = orientation;
     [((UICollectionViewFlowLayout *)_collectionView.collectionViewLayout) invalidateLayout];
 }
 
@@ -208,7 +208,7 @@
     [playButton addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchDown];
     
     UIView *bgView = [view viewWithTag:3];
-    if(_player.isPlaying) {
+    if(_player.streamer.isPlaying) {
         bgView.backgroundColor = [UIColor orangeColor];
     } else {
         if(_player.scheduledRetryAttempt) {
@@ -232,7 +232,7 @@
         UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
         titleLabel.text = feed[@"title"];
         
-        if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        if(UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             titleLabel.font = [titleLabel.font fontWithSize:TITLE_FONT_SIZE * 1.2];
         } else {
             titleLabel.font = [titleLabel.font fontWithSize:TITLE_FONT_SIZE];
@@ -261,7 +261,7 @@
         subtitleView.text = feed[@"mb_subtitle"];
         
         subtitleView.editable = TRUE;
-        if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        if(UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE * 1.2];
         } else {
             subtitleView.font = [subtitleView.font fontWithSize:SUBTITLE_FONT_SIZE];
@@ -282,7 +282,7 @@
     
     CGFloat w = [[self class] totalContentWidth:collectionView layout:collectionViewLayout cellCount:2];
     
-    if(UIDeviceOrientationIsPortrait(_orientation)) {
+    if(UIDeviceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
         if((indexPath.row % CELL_COUNT) == 0) {
             return CGSizeMake(w, 40); // title size
         }

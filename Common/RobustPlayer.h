@@ -17,7 +17,6 @@ extern NSString * const RPScheduledRetryAttemptChangedNotification;
 @interface RobustPlayer : NSObject
 
 @property (readonly) BOOL isPlaying;
-@property (readonly) BOOL shouldStopBeforeStart;
 @property (readonly, nonatomic) NSTimer *scheduledRetryAttempt;
 
 @property (readonly, nonatomic) RobustHttpStreamer *streamer;
