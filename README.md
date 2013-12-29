@@ -59,4 +59,4 @@ Apple ID: 784484940
 - play in background
 - remote control events
 - audio session interruption events
-- robust http audio connection with 5 redelivery attempts in 5, 10, 20, 40, 80 and 120 sec.
+- robust http audio connection with 6 redelivery attempts in 5, 10, 20, 40, 80 and 120 sec.

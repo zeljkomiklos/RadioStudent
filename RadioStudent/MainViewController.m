@@ -46,7 +46,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if((self = [super initWithCoder:aDecoder]) == nil) return nil;
-
+    
     return self;
 }
 
@@ -118,11 +118,12 @@
 }
 
 
-#pragma mark - Bindings
+#pragma mark - Actions
 
 - (IBAction)playAction:(id)sender {
-    [_feeds fetch];
-    [_player start];
+    if([_player start]) {
+        [_feeds fetch];
+    }
 }
 
 
@@ -339,7 +340,7 @@
     }
     
     if(streamer.isPaused) {
-       return AUDIO_STREAM_PAUSED_INFO;
+        return AUDIO_STREAM_PAUSED_INFO;
     }
     
     if(streamer.isWaiting) {

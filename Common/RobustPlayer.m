@@ -13,7 +13,7 @@
 #import "Constants.h"
 
 
-#define MAX_RETRY_ATTEMPTS 5
+#define MAX_RETRY_ATTEMPTS 6
 #define INITIAL_REDELIVERY_SECS 5
 
 #if defined(DEBUG)
@@ -109,16 +109,18 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
             return TRUE;
         }
         
-        _retryAttemtp++;
+        self.retryAttemtp += 1;
+        
         if(_retryAttemtp > MAX_RETRY_ATTEMPTS) {
             [_scheduledRetryAttempt invalidate];
             self.scheduledRetryAttempt = nil;
             
-            LOG(@"Giveup retrying: [%@]", _url);
+            LOG(@"Giveup retrying [#0]: [%@]", _url);
             
             [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
             return FALSE;
         }
+        
         
         LOG(@"Retry attempt: %d! [%@]", _retryAttemtp, _url);
         
@@ -208,16 +210,19 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     if (_playing && _disconnected && connectionAvailable) {
         self.disconnected = NO;
         
+        if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
+            LOG(@"Giveup retrying [#1]: [%@]", _url);
+            
+            [_scheduledRetryAttempt invalidate];
+            self.scheduledRetryAttempt = nil;
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
+            return;
+        }
+        
         if(_scheduledRetryAttempt) {
             [_scheduledRetryAttempt invalidate];
             self.scheduledRetryAttempt = nil;
-        }
-        
-        if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
-            LOG(@"Giveup retrying: [%@]", _url);
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
-            return;
         }
         
         int secs =  (1 << _retryAttemtp) * INITIAL_REDELIVERY_SECS;
@@ -248,21 +253,24 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     if(as.isDone) {
         if(_playing && !_disconnected) {
             
+            if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
+                LOG(@"Giveup retrying [#2]: [%@]", _url);
+                
+                [_scheduledRetryAttempt invalidate];
+                self.scheduledRetryAttempt = nil;
+
+                [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
+                return;
+            }
+            
             if(_scheduledRetryAttempt) {
                 [_scheduledRetryAttempt invalidate];
                 self.scheduledRetryAttempt = nil;
             }
             
-            if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
-                LOG(@"Giveup retrying: [%@]", _url);
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
-                return;
-            }
-            
             int secs =  (1 << _retryAttemtp) * INITIAL_REDELIVERY_SECS;
             
-            LOG(@"RobustPlayer: restart player in %d secs!", secs);
+            LOG(@"RobustPlayer: retry player in %d secs!", secs);
             
             self.scheduledRetryAttempt =[NSTimer scheduledTimerWithTimeInterval:secs
                                                                          target:self
