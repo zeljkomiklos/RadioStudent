@@ -89,12 +89,6 @@
 		1C991BB8186F0DBA00A7A9AF /* RSL768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSL768x1024.png; sourceTree = "<group>"; };
 		1C991BB9186F0DBA00A7A9AF /* RSL768x1024.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL768x1024.psd; sourceTree = "<group>"; };
 		1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		1C991BC8186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.26.39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.26.39.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.26.39.png"; sourceTree = "<group>"; };
-		1C991BC9186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.25.09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.25.09.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.25.09.png"; sourceTree = "<group>"; };
-		1C991BCA186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.24.56.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.24.56.png"; sourceTree = "<group>"; };
-		1C991BCB186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.24.30.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.24.30.png"; sourceTree = "<group>"; };
-		1C991BCC186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.24.09.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.24.09.png"; sourceTree = "<group>"; };
-		1C991BCD186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.23.44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS Simulator Screen shot 28. dec. 2013 15.23.44.png"; path = "../../../../Desktop/iOS Simulator Screen shot 28. dec. 2013 15.23.44.png"; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1CB196771865907D00CA4475 /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFeeds.h; sourceTree = "<group>"; };
@@ -242,12 +236,6 @@
 		1C991BA7186F0DBA00A7A9AF /* Design */ = {
 			isa = PBXGroup;
 			children = (
-				1C991BC8186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.26.39.png */,
-				1C991BC9186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.25.09.png */,
-				1C991BCA186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.56.png */,
-				1C991BCB186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.30.png */,
-				1C991BCC186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.24.09.png */,
-				1C991BCD186F17CF00A7A9AF /* iOS Simulator Screen shot 28. dec. 2013 15.23.44.png */,
 				1C991BA8186F0DBA00A7A9AF /* rs.png */,
 				1C991BA9186F0DBA00A7A9AF /* RS1024.png */,
 				1C991BAA186F0DBA00A7A9AF /* RS120.png */,
