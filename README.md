@@ -48,10 +48,6 @@ c) https://github.com/TakahikoKawasaki/nv-ios-version
 
 ## In AppStore
 
-SKU: SI-RADIOSTUDENT-RS
-
-Bundle ID: si.radiostudent.RadioStudent
-
 Apple ID: 784484940
 
 ### Release 1.0 features
