@@ -27,7 +27,6 @@
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
 		1CB196791865907D00CA4475 /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB196781865907D00CA4475 /* RSFeeds.m */; };
-		1CB1967C1865948D00CA4475 /* Version.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1967B1865948D00CA4475 /* Version.m */; };
 		1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4A26B18687E3500B46C9C /* WebArticleController.m */; };
 		1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */; };
 		1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F21864ED0000FD2CB9 /* Reachability.m */; };
@@ -93,8 +92,6 @@
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1CB196771865907D00CA4475 /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFeeds.h; sourceTree = "<group>"; };
 		1CB196781865907D00CA4475 /* RSFeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFeeds.m; sourceTree = "<group>"; };
-		1CB1967A1865948D00CA4475 /* Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
-		1CB1967B1865948D00CA4475 /* Version.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Version.m; sourceTree = "<group>"; };
 		1CC4A26A18687E3500B46C9C /* WebArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebArticleController.h; sourceTree = "<group>"; };
 		1CC4A26B18687E3500B46C9C /* WebArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebArticleController.m; sourceTree = "<group>"; };
 		1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = Vendors/AudioStreamer.h; sourceTree = "<group>"; };
@@ -138,8 +135,6 @@
 		1C1C828118609DCB002E07F0 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				1CB1967A1865948D00CA4475 /* Version.h */,
-				1CB1967B1865948D00CA4475 /* Version.m */,
 				1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */,
 				1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */,
 				1CE387F11864ED0000FD2CB9 /* Reachability.h */,
@@ -382,7 +377,6 @@
 			files = (
 				1CB196791865907D00CA4475 /* RSFeeds.m in Sources */,
 				1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */,
-				1CB1967C1865948D00CA4475 /* Version.m in Sources */,
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
 				1CE387FA1864ED1300FD2CB9 /* RobustPlayer.m in Sources */,

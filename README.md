@@ -42,8 +42,6 @@ a) https://github.com/alexcrichton/AudioStreamer
 
 b) https://github.com/tonymillion/Reachability
 
-c) https://github.com/TakahikoKawasaki/nv-ios-version
-
 
 
 ## In AppStore

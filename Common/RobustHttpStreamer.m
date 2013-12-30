@@ -10,7 +10,6 @@
 
 #import "RobustHttpStreamer.h"
 #import "Constants.h"
-#import "Version.h"
 
 #if defined(DEBUG)
 #define LOG(fmt, args...) NSLog(@"%s " fmt, __PRETTY_FUNCTION__, ##args)
@@ -26,7 +25,6 @@
 @interface RobustHttpStreamer ()
 
 @property (nonatomic) BOOL pausedByInterruption;
-@property (strong, nonatomic) Version *version;
 
 @end
 
@@ -47,9 +45,6 @@
 
 - (id)init {
     if((self = [super init]) == nil) return nil;
-    
-    self.version = [[Version alloc] initWithString:[[UIDevice currentDevice] systemVersion]];
-    
     
     return self;
 }
