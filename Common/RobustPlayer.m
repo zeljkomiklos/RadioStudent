@@ -64,8 +64,6 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 
 
 - (void)wakeUp {
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    
     self.wwanReachability = [Reachability reachabilityForInternetConnection];
     self.wifiReachability = [Reachability reachabilityForLocalWiFi];
     
