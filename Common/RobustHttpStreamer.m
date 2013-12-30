@@ -18,6 +18,7 @@
 #define LOG(...)
 #endif
 
+#define RSDefaultTimeoutInterval 7
 #define RSDefaultNumAQBufs 128
 #define RSDefaultAQDefaultBufSize 4096
 
@@ -40,7 +41,7 @@
     stream->url = url;
     stream->bufferCnt = RSDefaultNumAQBufs;
     stream->bufferSize = RSDefaultAQDefaultBufSize;
-    stream->timeoutInterval = 5;
+    stream->timeoutInterval = RSDefaultTimeoutInterval;
 	return stream;
 }
 
