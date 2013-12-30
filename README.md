@@ -47,6 +47,7 @@ b) https://github.com/tonymillion/Reachability
 ## In AppStore
 
 App Name: RŠ
+
 Apple ID: 784484940
 
 ### Release 1.0 description
