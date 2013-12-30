@@ -13,9 +13,6 @@
 #import "Constants.h"
 
 
-#define MAX_RETRY_ATTEMPTS 6
-#define INITIAL_REDELIVERY_SECS 5
-
 #if defined(DEBUG)
 #define LOG(fmt, args...) NSLog(@"%s " fmt, __PRETTY_FUNCTION__, ##args)
 #else
@@ -32,6 +29,7 @@
 @property (nonatomic) BOOL disconnected;
 @property (readonly) BOOL shouldStop;
 
+@property (readonly) NSUInteger maxRetryAttempts;
 @property (nonatomic) BOOL allowRetryAttempts;
 @property (nonatomic) int retryAttemtp;
 @property (weak, nonatomic) NSTimer *scheduledRetryAttempt;
@@ -112,7 +110,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
         
         self.retryAttemtp += 1;
         
-        if(_retryAttemtp > MAX_RETRY_ATTEMPTS) {
+        if(_retryAttemtp > self.maxRetryAttempts) {
             [_scheduledRetryAttempt invalidate];
             self.scheduledRetryAttempt = nil;
             
@@ -230,7 +228,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     if (_allowRetryAttempts && _disconnected && connectionAvailable) {
         self.disconnected = NO;
         
-        if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
+        if(_retryAttemtp >= self.maxRetryAttempts) {
             LOG(@"Giveup retrying [#1]: [%@]", _url);
             
             [_scheduledRetryAttempt invalidate];
@@ -245,11 +243,9 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
             self.scheduledRetryAttempt = nil;
         }
         
-        int secs =  (1 << _retryAttemtp) * INITIAL_REDELIVERY_SECS;
+        LOG(@"Retry connection in %g secs!", [self retryAttemptDelay:_retryAttemtp]);
         
-        LOG(@"Retry connection in %d secs!", secs);
-        
-        self.scheduledRetryAttempt = [NSTimer scheduledTimerWithTimeInterval:secs
+        self.scheduledRetryAttempt = [NSTimer scheduledTimerWithTimeInterval:[self retryAttemptDelay:_retryAttemtp]
                                                                       target:self
                                                                     selector:@selector(retry)
                                                                     userInfo:nil
@@ -273,7 +269,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     if(as.isDone) {
         if(_allowRetryAttempts && !_disconnected) {
             
-            if(_retryAttemtp >= MAX_RETRY_ATTEMPTS) {
+            if(_retryAttemtp >= self.maxRetryAttempts) {
                 LOG(@"Giveup retrying [#2]: [%@]", _url);
                 
                 [_scheduledRetryAttempt invalidate];
@@ -288,11 +284,9 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
                 self.scheduledRetryAttempt = nil;
             }
             
-            int secs =  (1 << _retryAttemtp) * INITIAL_REDELIVERY_SECS;
+            LOG(@"Retry player in %g secs!", [self retryAttemptDelay:_retryAttemtp]);
             
-            LOG(@"Retry player in %d secs!", secs);
-            
-            self.scheduledRetryAttempt =[NSTimer scheduledTimerWithTimeInterval:secs
+            self.scheduledRetryAttempt =[NSTimer scheduledTimerWithTimeInterval:[self retryAttemptDelay:_retryAttemtp]
                                                                          target:self
                                                                        selector:@selector(retry)
                                                                        userInfo:nil
@@ -320,6 +314,19 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
         
         [[NSNotificationCenter defaultCenter] postNotificationName:RPScheduledRetryAttemptChangedNotification object:self];
     }
+}
+
+
+// retry attempts
+// total time = sum(5 + attempt/2); attempt from 0 to 30.
+// total time is aprox. 390 secs.
+
+- (NSTimeInterval)retryAttemptDelay:(NSUInteger)attemtp {
+    return 5 + attemtp / 2;
+}
+
+- (NSUInteger)maxRetryAttempts {
+    return 30;
 }
 
 @end

@@ -40,7 +40,7 @@
     stream->url = url;
     stream->bufferCnt = RSDefaultNumAQBufs;
     stream->bufferSize = RSDefaultAQDefaultBufSize;
-    stream->timeoutInterval = 15;
+    stream->timeoutInterval = 5;
 	return stream;
 }
 
