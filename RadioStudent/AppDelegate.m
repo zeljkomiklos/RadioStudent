@@ -9,7 +9,17 @@
 #import "AppDelegate.h"
 
 
+#if defined(DEBUG)
+#define LOG(fmt, args...) NSLog(@"%s " fmt, __PRETTY_FUNCTION__, ##args)
+#else
+#define LOG(...)
+#endif
+
+
 @interface AppDelegate ()
+{
+    UIBackgroundTaskIdentifier _bgTask;
+}
 
 @end
 
@@ -18,18 +28,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSSetUncaughtExceptionHandler(&rootExceptionHandler);
-
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
-    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:1 * 1024 * 1024
-                                                         diskCapacity:4 * 1024 * 1024
-                                                             diskPath:nil];
-    [NSURLCache setSharedURLCache:URLCache];
-
+    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:1 * 1024 * 1024
+                                                      diskCapacity:4 * 1024 * 1024
+                                                          diskPath:nil];
+    [NSURLCache setSharedURLCache:cache];
+    
+    _bgTask = UIBackgroundTaskInvalid;
     
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -37,11 +48,27 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    LOG(@"Starting background task!");
+
+    _bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithName:@"RadioStudent-BG" expirationHandler:^{
+        NSLog(@"Background task expired!");
+        
+        [[UIApplication sharedApplication] endBackgroundTask:_bgTask];
+        _bgTask = UIBackgroundTaskInvalid;
+    }];
+    if(_bgTask == UIBackgroundTaskInvalid) {
+        NSLog(@"Can't start a background task!");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    if(_bgTask != UIBackgroundTaskInvalid) {
+        LOG(@"Exiting background task!");
+
+        [[UIApplication sharedApplication] endBackgroundTask:_bgTask];
+        _bgTask = UIBackgroundTaskInvalid;
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -21,13 +21,8 @@
 
 
 @interface RobustPlayer ()
-{
-    UIBackgroundTaskIdentifier _bgTask;
-    
-}
 
 @property (nonatomic) BOOL disconnected;
-@property (readonly) BOOL shouldStop;
 
 @property (readonly) NSUInteger maxRetryAttempts;
 @property (nonatomic) BOOL allowRetryAttempts;
@@ -53,8 +48,6 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     
     self.url = url;
     
-    _bgTask = UIBackgroundTaskInvalid;
-    
     return self;
 }
 
@@ -64,6 +57,8 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 
 
 - (void)wakeUp {
+    LOG(@"wakeUp");
+
     self.wwanReachability = [Reachability reachabilityForInternetConnection];
     self.wifiReachability = [Reachability reachabilityForLocalWiFi];
     
@@ -73,24 +68,18 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     [_wwanReachability startNotifier];
     [_wifiReachability startNotifier];
     
-    _bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [[UIApplication sharedApplication] endBackgroundTask:_bgTask];
-        _bgTask = UIBackgroundTaskInvalid;
-    }];
 }
 
 - (void)tearDown {
+    LOG(@"tearDown");
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [_wwanReachability stopNotifier];
     [_wifiReachability stopNotifier];
     
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
-    
-    if(_bgTask != UIBackgroundTaskInvalid) {
-        [[UIApplication sharedApplication] endBackgroundTask:_bgTask];
-    }
-    
+        
     [self stop];
     
     self.streamer = nil;
@@ -138,7 +127,7 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
 }
 
 - (BOOL)start {
-    if(self.shouldStop) {
+    if(_streamer != nil && !_streamer.isPaused) {
         [self stop];
         return FALSE;
     }
@@ -158,9 +147,6 @@ NSString * const RPScheduledRetryAttemptChangedNotification = @"RPScheduledRetry
     self.streamer = nil;
 }
 
-- (BOOL)shouldStop {
-    return _streamer != nil && !_streamer.isPaused;
-}
 
 
 #pragma mark - Remote Control
