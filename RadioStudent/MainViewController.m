@@ -68,10 +68,10 @@
     self.player = [RobustPlayer playerWithURL:[NSURL URLWithString:RS_LIVE_STREAM_URL]];
     self.feeds = [RSFeeds feedsWithURL:[NSURL URLWithString:RS_FEEDS_URL]];
     
-    [_player wakeUp];
-    
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    
+    [_player wakeUp];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -85,11 +85,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerStatusChangedNotif:) name:ASStatusChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scheduledRetryAttemptChangedNotif:) name:RPScheduledRetryAttemptChangedNotification
                                                object:nil];
-    
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    
+        
     [self becomeFirstResponder];
 
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
     [_collectionView reloadData];
 }
 
