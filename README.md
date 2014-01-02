@@ -42,6 +42,7 @@ a) https://github.com/alexcrichton/AudioStreamer
 
 b) https://github.com/tonymillion/Reachability
 
+c) https://google-toolbox-for-mac.googlecode.com/svn/trunk/Foundation/GTMNSString+HTML.h
 
 
 ## In AppStore

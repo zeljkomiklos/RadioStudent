@@ -14,6 +14,7 @@
 #import "RSImage.h"
 
 #import "WebArticleController.h"
+#import "NSString+DecodingXMLEntities.h"
 
 
 #if defined(DEBUG)
@@ -85,7 +86,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioStreamerStatusChangedNotif:) name:ASStatusChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scheduledRetryAttemptChangedNotif:) name:RPScheduledRetryAttemptChangedNotification
                                                object:nil];
-        
+    
     [self becomeFirstResponder];
 
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -239,7 +240,7 @@
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TitleCell" forIndexPath:indexPath];
         
         UILabel *titleLabel = (UILabel *)[cell viewWithTag:1];
-        titleLabel.text = feed[@"title"];
+        titleLabel.text = [feed[@"title"] stringByDecodingXMLEntities];
         
         if(UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             titleLabel.font = [titleLabel.font fontWithSize:TITLE_FONT_SIZE * 1.2];
@@ -267,7 +268,7 @@
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SubtitleCell" forIndexPath:indexPath];
         
         UITextView *subtitleView = (UITextView *)[cell viewWithTag:1];
-        subtitleView.text = feed[@"mb_subtitle"];
+        subtitleView.text = [feed[@"mb_subtitle"] stringByDecodingXMLEntities];
         
         subtitleView.editable = TRUE;
         if(UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
