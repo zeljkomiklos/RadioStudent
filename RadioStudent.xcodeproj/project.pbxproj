@@ -22,18 +22,18 @@
 		1C28C9E9186093CB00CB726C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C28C9CB186093CB00CB726C /* UIKit.framework */; };
 		1C28C9F1186093CB00CB726C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C28C9EF186093CB00CB726C /* InfoPlist.strings */; };
 		1C28C9F3186093CB00CB726C /* RadioStudentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28C9F2186093CB00CB726C /* RadioStudentTests.m */; };
+		1C64D184187845C5002124AA /* NSString+DecodingXMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C64D17F187845C5002124AA /* NSString+DecodingXMLEntities.m */; };
+		1C64D185187845C5002124AA /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C64D181187845C5002124AA /* RSFeeds.m */; };
+		1C64D186187845C5002124AA /* RSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C64D183187845C5002124AA /* RSImage.m */; };
 		1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8951581869B67C00C4F3FF /* ArticleController.m */; };
 		1C991BBB186F135B00A7A9AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */; };
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
-		1CA957D918756E59001A9AEE /* NSString+DecodingXMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA957D818756E59001A9AEE /* NSString+DecodingXMLEntities.m */; };
-		1CB196791865907D00CA4475 /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB196781865907D00CA4475 /* RSFeeds.m */; };
 		1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4A26B18687E3500B46C9C /* WebArticleController.m */; };
 		1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F01864ED0000FD2CB9 /* AudioStreamer.m */; };
 		1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F21864ED0000FD2CB9 /* Reachability.m */; };
 		1CE387F91864ED1300FD2CB9 /* RobustHttpStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F51864ED1300FD2CB9 /* RobustHttpStreamer.m */; };
 		1CE387FA1864ED1300FD2CB9 /* RobustPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE387F61864ED1300FD2CB9 /* RobustPlayer.m */; };
-		1CFC32E01865D06400300F25 /* RSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFC32DF1865D06400300F25 /* RSImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +68,12 @@
 		1C28C9EE186093CB00CB726C /* RadioStudentTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RadioStudentTests-Info.plist"; sourceTree = "<group>"; };
 		1C28C9F0186093CB00CB726C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C28C9F2186093CB00CB726C /* RadioStudentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadioStudentTests.m; sourceTree = "<group>"; };
+		1C64D17E187845C5002124AA /* NSString+DecodingXMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+DecodingXMLEntities.h"; path = "Common/NSString+DecodingXMLEntities.h"; sourceTree = "<group>"; };
+		1C64D17F187845C5002124AA /* NSString+DecodingXMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+DecodingXMLEntities.m"; path = "Common/NSString+DecodingXMLEntities.m"; sourceTree = "<group>"; };
+		1C64D180187845C5002124AA /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSFeeds.h; path = Common/RSFeeds.h; sourceTree = "<group>"; };
+		1C64D181187845C5002124AA /* RSFeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSFeeds.m; path = Common/RSFeeds.m; sourceTree = "<group>"; };
+		1C64D182187845C5002124AA /* RSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSImage.h; path = Common/RSImage.h; sourceTree = "<group>"; };
+		1C64D183187845C5002124AA /* RSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSImage.m; path = Common/RSImage.m; sourceTree = "<group>"; };
 		1C8951571869B67C00C4F3FF /* ArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleController.h; sourceTree = "<group>"; };
 		1C8951581869B67C00C4F3FF /* ArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleController.m; sourceTree = "<group>"; };
 		1C991BA8186F0DBA00A7A9AF /* rs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rs.png; sourceTree = "<group>"; };
@@ -91,10 +97,6 @@
 		1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		1CA957D718756E59001A9AEE /* NSString+DecodingXMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DecodingXMLEntities.h"; sourceTree = "<group>"; };
-		1CA957D818756E59001A9AEE /* NSString+DecodingXMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DecodingXMLEntities.m"; sourceTree = "<group>"; };
-		1CB196771865907D00CA4475 /* RSFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFeeds.h; sourceTree = "<group>"; };
-		1CB196781865907D00CA4475 /* RSFeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFeeds.m; sourceTree = "<group>"; };
 		1CC4A26A18687E3500B46C9C /* WebArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebArticleController.h; sourceTree = "<group>"; };
 		1CC4A26B18687E3500B46C9C /* WebArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebArticleController.m; sourceTree = "<group>"; };
 		1CE387EF1864ED0000FD2CB9 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = Vendors/AudioStreamer.h; sourceTree = "<group>"; };
@@ -105,8 +107,6 @@
 		1CE387F61864ED1300FD2CB9 /* RobustPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RobustPlayer.m; path = Common/RobustPlayer.m; sourceTree = "<group>"; };
 		1CE387F71864ED1300FD2CB9 /* RobustHttpStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RobustHttpStreamer.h; path = Common/RobustHttpStreamer.h; sourceTree = "<group>"; };
 		1CE387F81864ED1300FD2CB9 /* RobustPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RobustPlayer.h; path = Common/RobustPlayer.h; sourceTree = "<group>"; };
-		1CFC32DE1865D06400300F25 /* RSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImage.h; sourceTree = "<group>"; };
-		1CFC32DF1865D06400300F25 /* RSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,16 +259,16 @@
 		1CE387EE1864ECE700FD2CB9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1C64D17E187845C5002124AA /* NSString+DecodingXMLEntities.h */,
+				1C64D17F187845C5002124AA /* NSString+DecodingXMLEntities.m */,
+				1C64D180187845C5002124AA /* RSFeeds.h */,
+				1C64D181187845C5002124AA /* RSFeeds.m */,
+				1C64D182187845C5002124AA /* RSImage.h */,
+				1C64D183187845C5002124AA /* RSImage.m */,
 				1CE387F71864ED1300FD2CB9 /* RobustHttpStreamer.h */,
 				1CE387F51864ED1300FD2CB9 /* RobustHttpStreamer.m */,
 				1CE387F81864ED1300FD2CB9 /* RobustPlayer.h */,
 				1CE387F61864ED1300FD2CB9 /* RobustPlayer.m */,
-				1CB196771865907D00CA4475 /* RSFeeds.h */,
-				1CB196781865907D00CA4475 /* RSFeeds.m */,
-				1CFC32DE1865D06400300F25 /* RSImage.h */,
-				1CFC32DF1865D06400300F25 /* RSImage.m */,
-				1CA957D718756E59001A9AEE /* NSString+DecodingXMLEntities.h */,
-				1CA957D818756E59001A9AEE /* NSString+DecodingXMLEntities.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -380,16 +380,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CB196791865907D00CA4475 /* RSFeeds.m in Sources */,
 				1C28C9D8186093CB00CB726C /* AppDelegate.m in Sources */,
-				1CA957D918756E59001A9AEE /* NSString+DecodingXMLEntities.m in Sources */,
 				1C1C828918609EE1002E07F0 /* MainViewController.m in Sources */,
 				1C28C9D4186093CB00CB726C /* main.m in Sources */,
 				1CE387FA1864ED1300FD2CB9 /* RobustPlayer.m in Sources */,
 				1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */,
-				1CFC32E01865D06400300F25 /* RSImage.m in Sources */,
 				1CE387F31864ED0000FD2CB9 /* AudioStreamer.m in Sources */,
+				1C64D185187845C5002124AA /* RSFeeds.m in Sources */,
 				1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */,
+				1C64D186187845C5002124AA /* RSImage.m in Sources */,
+				1C64D184187845C5002124AA /* NSString+DecodingXMLEntities.m in Sources */,
 				1CE387F41864ED0000FD2CB9 /* Reachability.m in Sources */,
 				1CE387F91864ED1300FD2CB9 /* RobustHttpStreamer.m in Sources */,
 			);
