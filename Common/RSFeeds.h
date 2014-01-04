@@ -17,6 +17,4 @@
 
 - (void)fetch;
 
-- (NSArray *)feedContent:(NSInteger)index;
-
 @end

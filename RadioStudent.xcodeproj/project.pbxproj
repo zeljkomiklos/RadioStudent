@@ -26,7 +26,6 @@
 		1C64D185187845C5002124AA /* RSFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C64D181187845C5002124AA /* RSFeeds.m */; };
 		1C64D186187845C5002124AA /* RSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C64D183187845C5002124AA /* RSImage.m */; };
 		1C8951591869B67C00C4F3FF /* ArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8951581869B67C00C4F3FF /* ArticleController.m */; };
-		1C991BBB186F135B00A7A9AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */; };
 		1C9FE9CB1864645A00F6055A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */; };
 		1C9FE9CD1864646500F6055A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9FE9CC1864646500F6055A /* CFNetwork.framework */; };
 		1CC4A26C18687E3500B46C9C /* WebArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4A26B18687E3500B46C9C /* WebArticleController.m */; };
@@ -94,7 +93,6 @@
 		1C991BB7186F0DBA00A7A9AF /* RSL640x960.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL640x960.psd; sourceTree = "<group>"; };
 		1C991BB8186F0DBA00A7A9AF /* RSL768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RSL768x1024.png; sourceTree = "<group>"; };
 		1C991BB9186F0DBA00A7A9AF /* RSL768x1024.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = RSL768x1024.psd; sourceTree = "<group>"; };
-		1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1C9FE9CA1864645A00F6055A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1C9FE9CC1864646500F6055A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1CC4A26A18687E3500B46C9C /* WebArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebArticleController.h; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 		1C28C9BB186093CB00CB726C = {
 			isa = PBXGroup;
 			children = (
-				1C991BBA186F135B00A7A9AF /* Default-568h@2x.png */,
 				1C1C828A1860A07F002E07F0 /* Constants.h */,
 				1CE387EE1864ECE700FD2CB9 /* Common */,
 				1C28C9CD186093CB00CB726C /* RadioStudent */,
@@ -360,7 +357,6 @@
 				1C28C9E0186093CB00CB726C /* Images.xcassets in Resources */,
 				1C28C9D2186093CB00CB726C /* InfoPlist.strings in Resources */,
 				1C1C82901860A827002E07F0 /* README.md in Resources */,
-				1C991BBB186F135B00A7A9AF /* Default-568h@2x.png in Resources */,
 				1C1C828618609E7F002E07F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

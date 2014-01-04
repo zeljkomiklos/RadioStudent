@@ -78,13 +78,4 @@
 }
 
 
-//
-//
-//
-
-
-- (NSArray *)feedContent:(NSInteger)index {
-    return nil;
-}
-
 @end
