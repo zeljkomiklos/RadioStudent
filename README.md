@@ -72,3 +72,7 @@ Serving very diverse “communities”:
 - primary school media – workshops and establishment of radio and multi-media portal at primary schools, regular seminars for school radio pioneers and co-workers 
 -special politics coverage: broadcast Balkan express on topics from the Balkan states and Southern Hemisphere on topics from the third world
 
+
+### Release 1.0.1 
+
+Bug fixes.
