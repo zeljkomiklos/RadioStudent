@@ -53,14 +53,14 @@ Apple ID: 784484940
 
 Player of our favorite radio station in Ljubljana, Slovenia. 
 Features: 
-- play in background 
-- remote control support 
-- audio session interruption support 
-- robust http audio connection with many redelivery attempts 
+- play in background,
+- remote control support,
+- audio session interruption support,
+- robust http audio connection with many redelivery attempts.
 
-Established in 1969 by the Student Organization of the University of Ljubljana, the legendary Radio Študent (RŠ) is one of Europe's oldest and strongest non-commercial, alternative urban radio stations, attracting over 200 contributors to its high-quality non-commercial programming every year. RŠ is based in Ljubljana, the capital of Slovenia, until its declaration of independence in June 1991 the most developed republic of SFRJ (Socialist Federal Republic of Yugoslavia) and the member of EU since 1 May 2004, bordered by Italy, Austria, Hungary and Croatia.
+Established on 9. May 1969 by the Student Organization of the University of Ljubljana, the legendary Radio Študent (RŠ) is one of Europe's oldest and strongest non-commercial, alternative urban radio stations, attracting over 200 contributors to its high-quality non-commercial programming every year. RŠ is based in Ljubljana, the capital of the Republic of Slovenia and the member of EU since 1. May 2004.
 
-The Radio Student homepage address is www.radiostudent.si. It is broadcast on 89.3 MHz (500 W) UKV stereo, covering Ljubljana and its surroundings (500,000 potential listeners).
+The Radio Študent homepage address is www.radiostudent.si. It is broadcast on 89.3 MHz (500 W) UKV stereo, covering Ljubljana and its surroundings (500,000 potential listeners).
 
 In the history of Slovene radio broadcasting RŠ stands out as the foremost presenter and critical evaluator of actual global music events with its characteristic form of music criticism, heartfelt and absorbed presentation of liminal, edgy, marginalised and socially provocative music from the world, ranging from all alternative forms of rock, contemporary DJ and electronic music, jazz and improvised music, avant-garde and folk music, experimental music etc.
 
